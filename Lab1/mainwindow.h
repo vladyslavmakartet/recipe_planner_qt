@@ -16,11 +16,15 @@ public:
     ~MainWindow();
 
 private slots:
+    void CreateShoppingList();
+    void exit();
+
+
+
     void on_addButton_clicked();
 
-    void on_editButton_clicked();
+signals:
 
-    void on_deleteButton_clicked();
 
 private:
     Ui::MainWindow *ui;

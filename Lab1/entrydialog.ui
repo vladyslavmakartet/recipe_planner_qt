@@ -26,27 +26,27 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_4"/>
+        <widget class="QLineEdit" name="RecipeNameLine"/>
        </item>
        <item>
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="recipeLabel">
          <property name="text">
           <string>Recipe</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="textEdit"/>
+        <widget class="QTextEdit" name="RecipeTextEdit"/>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="ingreedientsLabel">
          <property name="text">
           <string>Ingreedients</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QListView" name="listView"/>
+        <widget class="QListView" name="IngreedientsListView"/>
        </item>
       </layout>
      </item>
@@ -65,10 +65,10 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLineEdit" name="lineEdit"/>
+          <widget class="QLineEdit" name="ItemLine"/>
          </item>
          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLabel" name="label_3">
+          <widget class="QLabel" name="itemLabel">
            <property name="text">
             <string>Item</string>
            </property>
@@ -79,10 +79,10 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QLineEdit" name="lineEdit_2"/>
+          <widget class="QLineEdit" name="QuantityLine"/>
          </item>
          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLabel" name="label_5">
+          <widget class="QLabel" name="quantityLabel">
            <property name="text">
             <string>Quantity</string>
            </property>
@@ -93,10 +93,10 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QLineEdit" name="lineEdit_3"/>
+          <widget class="QLineEdit" name="UnitLine"/>
          </item>
          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLabel" name="label_6">
+          <widget class="QLabel" name="unitLabel">
            <property name="text">
             <string>Unit</string>
            </property>
@@ -105,21 +105,21 @@
         </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="addButton">
          <property name="text">
           <string>Add</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="modifyButton">
          <property name="text">
           <string>Modify</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="deleteButton">
          <property name="text">
           <string>Delete</string>
          </property>

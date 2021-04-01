@@ -9,19 +9,25 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dataholder.cpp \
     entrydialog.cpp \
     main.cpp \
     mainwindow.cpp \
-    recipeplannermodel.cpp
+    menudialog.cpp \
+    recipetablemodel.cpp
 
 HEADERS += \
+    dataholder.h \
     entrydialog.h \
     mainwindow.h \
-    recipeplannermodel.h
+    json.hpp \
+    menudialog.h \
+    recipetablemodel.h
 
 FORMS += \
     entrydialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    menudialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

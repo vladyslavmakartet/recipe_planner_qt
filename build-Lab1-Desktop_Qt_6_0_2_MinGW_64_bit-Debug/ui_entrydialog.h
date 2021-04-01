@@ -32,25 +32,25 @@ public:
     QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_4;
-    QLineEdit *lineEdit_4;
-    QLabel *label;
-    QTextEdit *textEdit;
-    QLabel *label_2;
-    QListView *listView;
+    QLineEdit *RecipeNameLine;
+    QLabel *recipeLabel;
+    QTextEdit *RecipeTextEdit;
+    QLabel *ingreedientsLabel;
+    QListView *IngreedientsListView;
     QDialogButtonBox *buttonBox;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
-    QLineEdit *lineEdit;
-    QLabel *label_3;
+    QLineEdit *ItemLine;
+    QLabel *itemLabel;
     QVBoxLayout *verticalLayout_2;
-    QLineEdit *lineEdit_2;
-    QLabel *label_5;
+    QLineEdit *QuantityLine;
+    QLabel *quantityLabel;
     QVBoxLayout *verticalLayout_3;
-    QLineEdit *lineEdit_3;
-    QLabel *label_6;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
+    QLineEdit *UnitLine;
+    QLabel *unitLabel;
+    QPushButton *addButton;
+    QPushButton *modifyButton;
+    QPushButton *deleteButton;
 
     void setupUi(QDialog *EntryDialog)
     {
@@ -68,30 +68,30 @@ public:
 
         verticalLayout_4->addWidget(label_4);
 
-        lineEdit_4 = new QLineEdit(EntryDialog);
-        lineEdit_4->setObjectName(QString::fromUtf8("lineEdit_4"));
+        RecipeNameLine = new QLineEdit(EntryDialog);
+        RecipeNameLine->setObjectName(QString::fromUtf8("RecipeNameLine"));
 
-        verticalLayout_4->addWidget(lineEdit_4);
+        verticalLayout_4->addWidget(RecipeNameLine);
 
-        label = new QLabel(EntryDialog);
-        label->setObjectName(QString::fromUtf8("label"));
+        recipeLabel = new QLabel(EntryDialog);
+        recipeLabel->setObjectName(QString::fromUtf8("recipeLabel"));
 
-        verticalLayout_4->addWidget(label);
+        verticalLayout_4->addWidget(recipeLabel);
 
-        textEdit = new QTextEdit(EntryDialog);
-        textEdit->setObjectName(QString::fromUtf8("textEdit"));
+        RecipeTextEdit = new QTextEdit(EntryDialog);
+        RecipeTextEdit->setObjectName(QString::fromUtf8("RecipeTextEdit"));
 
-        verticalLayout_4->addWidget(textEdit);
+        verticalLayout_4->addWidget(RecipeTextEdit);
 
-        label_2 = new QLabel(EntryDialog);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
+        ingreedientsLabel = new QLabel(EntryDialog);
+        ingreedientsLabel->setObjectName(QString::fromUtf8("ingreedientsLabel"));
 
-        verticalLayout_4->addWidget(label_2);
+        verticalLayout_4->addWidget(ingreedientsLabel);
 
-        listView = new QListView(EntryDialog);
-        listView->setObjectName(QString::fromUtf8("listView"));
+        IngreedientsListView = new QListView(EntryDialog);
+        IngreedientsListView->setObjectName(QString::fromUtf8("IngreedientsListView"));
 
-        verticalLayout_4->addWidget(listView);
+        verticalLayout_4->addWidget(IngreedientsListView);
 
 
         gridLayout->addLayout(verticalLayout_4, 0, 0, 1, 1);
@@ -107,63 +107,63 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        lineEdit = new QLineEdit(EntryDialog);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        ItemLine = new QLineEdit(EntryDialog);
+        ItemLine->setObjectName(QString::fromUtf8("ItemLine"));
 
-        verticalLayout->addWidget(lineEdit);
+        verticalLayout->addWidget(ItemLine);
 
-        label_3 = new QLabel(EntryDialog);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
+        itemLabel = new QLabel(EntryDialog);
+        itemLabel->setObjectName(QString::fromUtf8("itemLabel"));
 
-        verticalLayout->addWidget(label_3, 0, Qt::AlignHCenter|Qt::AlignVCenter);
+        verticalLayout->addWidget(itemLabel, 0, Qt::AlignHCenter|Qt::AlignVCenter);
 
 
         horizontalLayout->addLayout(verticalLayout);
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        lineEdit_2 = new QLineEdit(EntryDialog);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+        QuantityLine = new QLineEdit(EntryDialog);
+        QuantityLine->setObjectName(QString::fromUtf8("QuantityLine"));
 
-        verticalLayout_2->addWidget(lineEdit_2);
+        verticalLayout_2->addWidget(QuantityLine);
 
-        label_5 = new QLabel(EntryDialog);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
+        quantityLabel = new QLabel(EntryDialog);
+        quantityLabel->setObjectName(QString::fromUtf8("quantityLabel"));
 
-        verticalLayout_2->addWidget(label_5, 0, Qt::AlignHCenter|Qt::AlignVCenter);
+        verticalLayout_2->addWidget(quantityLabel, 0, Qt::AlignHCenter|Qt::AlignVCenter);
 
 
         horizontalLayout->addLayout(verticalLayout_2);
 
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        lineEdit_3 = new QLineEdit(EntryDialog);
-        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+        UnitLine = new QLineEdit(EntryDialog);
+        UnitLine->setObjectName(QString::fromUtf8("UnitLine"));
 
-        verticalLayout_3->addWidget(lineEdit_3);
+        verticalLayout_3->addWidget(UnitLine);
 
-        label_6 = new QLabel(EntryDialog);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
+        unitLabel = new QLabel(EntryDialog);
+        unitLabel->setObjectName(QString::fromUtf8("unitLabel"));
 
-        verticalLayout_3->addWidget(label_6, 0, Qt::AlignHCenter|Qt::AlignVCenter);
+        verticalLayout_3->addWidget(unitLabel, 0, Qt::AlignHCenter|Qt::AlignVCenter);
 
 
         horizontalLayout->addLayout(verticalLayout_3);
 
-        pushButton = new QPushButton(EntryDialog);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        addButton = new QPushButton(EntryDialog);
+        addButton->setObjectName(QString::fromUtf8("addButton"));
 
-        horizontalLayout->addWidget(pushButton);
+        horizontalLayout->addWidget(addButton);
 
-        pushButton_2 = new QPushButton(EntryDialog);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        modifyButton = new QPushButton(EntryDialog);
+        modifyButton->setObjectName(QString::fromUtf8("modifyButton"));
 
-        horizontalLayout->addWidget(pushButton_2);
+        horizontalLayout->addWidget(modifyButton);
 
-        pushButton_3 = new QPushButton(EntryDialog);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        deleteButton = new QPushButton(EntryDialog);
+        deleteButton->setObjectName(QString::fromUtf8("deleteButton"));
 
-        horizontalLayout->addWidget(pushButton_3);
+        horizontalLayout->addWidget(deleteButton);
 
 
         gridLayout->addLayout(horizontalLayout, 1, 0, 1, 1);
@@ -183,14 +183,14 @@ public:
     {
         EntryDialog->setWindowTitle(QCoreApplication::translate("EntryDialog", "Add", nullptr));
         label_4->setText(QCoreApplication::translate("EntryDialog", "Recipe name", nullptr));
-        label->setText(QCoreApplication::translate("EntryDialog", "Recipe", nullptr));
-        label_2->setText(QCoreApplication::translate("EntryDialog", "Ingreedients", nullptr));
-        label_3->setText(QCoreApplication::translate("EntryDialog", "Item", nullptr));
-        label_5->setText(QCoreApplication::translate("EntryDialog", "Quantity", nullptr));
-        label_6->setText(QCoreApplication::translate("EntryDialog", "Unit", nullptr));
-        pushButton->setText(QCoreApplication::translate("EntryDialog", "Add", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("EntryDialog", "Modify", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("EntryDialog", "Delete", nullptr));
+        recipeLabel->setText(QCoreApplication::translate("EntryDialog", "Recipe", nullptr));
+        ingreedientsLabel->setText(QCoreApplication::translate("EntryDialog", "Ingreedients", nullptr));
+        itemLabel->setText(QCoreApplication::translate("EntryDialog", "Item", nullptr));
+        quantityLabel->setText(QCoreApplication::translate("EntryDialog", "Quantity", nullptr));
+        unitLabel->setText(QCoreApplication::translate("EntryDialog", "Unit", nullptr));
+        addButton->setText(QCoreApplication::translate("EntryDialog", "Add", nullptr));
+        modifyButton->setText(QCoreApplication::translate("EntryDialog", "Modify", nullptr));
+        deleteButton->setText(QCoreApplication::translate("EntryDialog", "Delete", nullptr));
     } // retranslateUi
 
 };
