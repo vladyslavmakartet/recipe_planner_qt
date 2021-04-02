@@ -1,40 +1,16 @@
-#ifndef RECIPETABLEMODEL_H
-#define RECIPETABLEMODEL_H
+#ifndef INGREDIENTTABLEMODEL_H
+#define INGREDIENTTABLEMODEL_H
 
 #include <QAbstractTableModel>
 #include "dataholder.h"
-#include <QMultiMap>
-//struct Recipe
-//{
-//    QString recipeName;
-//    QString recipeDescription;
-//    //QMap<QString,QPair<qfloat16,QString>> ingredient;
-//    //QMap<QString,QString> ingredient;
-//    QMap<QString,QVariant> ingredient;
-//    bool operator==(const Recipe &other) const
-//    {
-//        return  recipeName == other.recipeName && recipeDescription == other.recipeDescription;
-//    }
-//};
-////typedef QMap<QString,QPair<qfloat16,QString>> ingredient;
-////Q_DECLARE_METATYPE(ingredient);
 
-//inline  QDataStream &operator<<(QDataStream &stream, const Recipe &recipe)
-//{
-//    return stream << recipe.recipeName << recipe.recipeDescription;
-//}
-//inline  QDataStream &operator>>(QDataStream &stream, Recipe &recipe)
-//{
-//    return stream >> recipe.recipeName >> recipe.recipeDescription;
-//}
-
-class RecipeTableModel : public QAbstractTableModel
+class ingredientTableModel : public QAbstractTableModel
 {
     Q_OBJECT
 
 public:
-    explicit RecipeTableModel(QObject *parent = nullptr);
-    explicit RecipeTableModel(const QList<Recipe> &recipes, QObject *parent = nullptr);
+    explicit ingredientTableModel(QObject *parent = nullptr);
+    explicit ingredientTableModel(const QVector<Ingredient> &ingredients, QObject *parent = nullptr);
 
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
@@ -60,12 +36,10 @@ public:
     // Remove data:
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
     //bool removeColumns(int column, int count, const QModelIndex &parent = QModelIndex()) override;
-
-    const QVector<Recipe> &getRecipes() const;
-
+    const QVector<Ingredient> &getIngredient() const;
 
 private:
-    QVector<Recipe> recipes;
+    QVector<Ingredient> ingredients;
 };
 
-#endif // RECIPETABLEMODEL_H
+#endif // INGREDIENTTABLEMODEL_H

@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     dataholder.cpp \
     entrydialog.cpp \
+    ingredienttablemodel.cpp \
     main.cpp \
     mainwindow.cpp \
     menudialog.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 HEADERS += \
     dataholder.h \
     entrydialog.h \
+    ingredienttablemodel.h \
     mainwindow.h \
     json.hpp \
     menudialog.h \

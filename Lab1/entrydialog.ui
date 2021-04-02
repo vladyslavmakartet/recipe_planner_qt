@@ -19,7 +19,7 @@
      <item row="0" column="0">
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="RecipeNameLabel">
          <property name="text">
           <string>Recipe name</string>
          </property>
@@ -39,14 +39,14 @@
         <widget class="QTextEdit" name="RecipeTextEdit"/>
        </item>
        <item>
-        <widget class="QLabel" name="ingreedientsLabel">
+        <widget class="QLabel" name="ingredientsLabel">
          <property name="text">
-          <string>Ingreedients</string>
+          <string>Ingredients</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QListView" name="IngreedientsListView"/>
+        <widget class="QTableView" name="IngredientsTableView"/>
        </item>
       </layout>
      </item>
@@ -65,12 +65,12 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLineEdit" name="ItemLine"/>
+          <widget class="QLineEdit" name="ingredientNameLine"/>
          </item>
          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-          <widget class="QLabel" name="itemLabel">
+          <widget class="QLabel" name="nameLabel">
            <property name="text">
-            <string>Item</string>
+            <string>Name</string>
            </property>
           </widget>
          </item>

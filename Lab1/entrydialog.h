@@ -7,6 +7,8 @@
 #include "ui_entrydialog.h"
 #include <QStringListModel>
 #include "dataholder.h"
+#include "recipetablemodel.h"
+#include "ingredienttablemodel.h"
 
 
 namespace Ui {
@@ -21,6 +23,7 @@ class EntryDialog : public QDialog
 public:
     explicit EntryDialog(QWidget *parent = nullptr);
     ~EntryDialog();
+    //void returnDataToMainWindow();
 
 private slots:
     void allLinesFilled();
@@ -34,12 +37,12 @@ private slots:
 signals:
     void clearLineEdits();
     void FieldsFilled();
+
 private:
     Ui::EntryDialog *ui;
-    QStringListModel *model;
-
-    QStringList list;
-    QString string;
+    ingredientTableModel *model;
+    Ingredient ingredient;
+    QVector<Ingredient> ingredientVector;
 };
 
 #endif // ENTRYDIALOG_H

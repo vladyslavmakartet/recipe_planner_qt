@@ -16,10 +16,11 @@
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
 
@@ -35,13 +36,13 @@ public:
     QLineEdit *RecipeNameLine;
     QLabel *recipeLabel;
     QTextEdit *RecipeTextEdit;
-    QLabel *ingreedientsLabel;
-    QListView *IngreedientsListView;
+    QLabel *ingredientsLabel;
+    QTableView *IngredientsTableView;
     QDialogButtonBox *buttonBox;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
-    QLineEdit *ItemLine;
-    QLabel *itemLabel;
+    QLineEdit *ingredientNameLine;
+    QLabel *nameLabel;
     QVBoxLayout *verticalLayout_2;
     QLineEdit *QuantityLine;
     QLabel *quantityLabel;
@@ -83,15 +84,15 @@ public:
 
         verticalLayout_4->addWidget(RecipeTextEdit);
 
-        ingreedientsLabel = new QLabel(EntryDialog);
-        ingreedientsLabel->setObjectName(QString::fromUtf8("ingreedientsLabel"));
+        ingredientsLabel = new QLabel(EntryDialog);
+        ingredientsLabel->setObjectName(QString::fromUtf8("ingredientsLabel"));
 
-        verticalLayout_4->addWidget(ingreedientsLabel);
+        verticalLayout_4->addWidget(ingredientsLabel);
 
-        IngreedientsListView = new QListView(EntryDialog);
-        IngreedientsListView->setObjectName(QString::fromUtf8("IngreedientsListView"));
+        IngredientsTableView = new QTableView(EntryDialog);
+        IngredientsTableView->setObjectName(QString::fromUtf8("IngredientsTableView"));
 
-        verticalLayout_4->addWidget(IngreedientsListView);
+        verticalLayout_4->addWidget(IngredientsTableView);
 
 
         gridLayout->addLayout(verticalLayout_4, 0, 0, 1, 1);
@@ -107,15 +108,15 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        ItemLine = new QLineEdit(EntryDialog);
-        ItemLine->setObjectName(QString::fromUtf8("ItemLine"));
+        ingredientNameLine = new QLineEdit(EntryDialog);
+        ingredientNameLine->setObjectName(QString::fromUtf8("ingredientNameLine"));
 
-        verticalLayout->addWidget(ItemLine);
+        verticalLayout->addWidget(ingredientNameLine);
 
-        itemLabel = new QLabel(EntryDialog);
-        itemLabel->setObjectName(QString::fromUtf8("itemLabel"));
+        nameLabel = new QLabel(EntryDialog);
+        nameLabel->setObjectName(QString::fromUtf8("nameLabel"));
 
-        verticalLayout->addWidget(itemLabel, 0, Qt::AlignHCenter|Qt::AlignVCenter);
+        verticalLayout->addWidget(nameLabel, 0, Qt::AlignHCenter|Qt::AlignVCenter);
 
 
         horizontalLayout->addLayout(verticalLayout);
@@ -184,8 +185,8 @@ public:
         EntryDialog->setWindowTitle(QCoreApplication::translate("EntryDialog", "Add", nullptr));
         label_4->setText(QCoreApplication::translate("EntryDialog", "Recipe name", nullptr));
         recipeLabel->setText(QCoreApplication::translate("EntryDialog", "Recipe", nullptr));
-        ingreedientsLabel->setText(QCoreApplication::translate("EntryDialog", "Ingreedients", nullptr));
-        itemLabel->setText(QCoreApplication::translate("EntryDialog", "Item", nullptr));
+        ingredientsLabel->setText(QCoreApplication::translate("EntryDialog", "Ingredients", nullptr));
+        nameLabel->setText(QCoreApplication::translate("EntryDialog", "Name", nullptr));
         quantityLabel->setText(QCoreApplication::translate("EntryDialog", "Quantity", nullptr));
         unitLabel->setText(QCoreApplication::translate("EntryDialog", "Unit", nullptr));
         addButton->setText(QCoreApplication::translate("EntryDialog", "Add", nullptr));

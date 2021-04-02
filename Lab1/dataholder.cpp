@@ -1,11 +1,11 @@
 #include "dataholder.h"
 
 Recipe::Recipe(){}
-Recipe::Recipe(const QString Name, const QString Description)//, QList<Ingredient> IngredientList)
+Recipe::Recipe(const QString Name, const QString Description, QVector<Ingredient> Ingredients)
 {
     recipeName = Name;
     recipeDescription = Description;
-    //ingredients = IngredientList;
+    ingredients = Ingredients;
 }
 QString Recipe::getRecipeName() const
 {
@@ -23,8 +23,16 @@ void Recipe::setRecipeDescription(const QString Description)
 {
     this->recipeDescription = Description;
 }
+QVector<Ingredient> Recipe::getRecipeIngredients() const
+{
+    return this->ingredients;
+}
+void Recipe::setRecipeIngredients(const Ingredient data)
+{
+    this->ingredients.append(data);
+}
 Ingredient::Ingredient(){}
-Ingredient::Ingredient(const QString newName, const qfloat16 newQuantity, const QString newUnit)
+Ingredient::Ingredient(const QString newName, const float newQuantity, const QString newUnit)
 {
     name = newName;
     quantity = newQuantity;
@@ -34,10 +42,14 @@ QString Ingredient::getIngredientName() const
 {
     return this->name;
 }
-qfloat16 Ingredient::getIngredientQuantity() const
+float Ingredient::getIngredientQuantity() const
 {
     return this->quantity;
 }
+//float Ingredient::getIngredientQuantity() const
+//{
+//    return this->quantity;
+//}
 QString Ingredient::getIngredientUnit() const
 {
     return this->unit;
@@ -46,11 +58,35 @@ void Ingredient::setIngredientName(const QString newName)
 {
     this->name = newName;
 }
-void Ingredient::setIngredientQuantity(const qfloat16 newQuantity)
+void Ingredient::setIngredientQuantity(const float newQuantity)
 {
     this->quantity = newQuantity;
 }
+//void Ingredient::setIngredientQuantity(const float newQuantity)
+//{
+//    this->quantity = newQuantity;
+//}
 void Ingredient::setIngredientUnit(const QString newUnit)
 {
-    this->unit =newUnit;
+    this->unit = newUnit;
 }
+bool Ingredient::checkIfEqual(QString name, float quantity, QString unit)
+{
+    if (this->name == name || this->quantity == quantity || this->unit == unit)
+        return true;
+    return false;
+}
+bool Ingredient::operator==(const Ingredient &rhs) const
+{
+    if(this->name == rhs.name && this->quantity == rhs.quantity && this->unit == rhs.unit)
+        return true;
+    return false;
+}
+//bool operator==(const Ingredient &lhs, const Ingredient &rhs)
+//{
+//    if (lhs.getIngredientName() == rhs.getIngredientName()
+//            || lhs.getIngredientQuantity() == rhs.getIngredientQuantity()
+//            || lhs.getIngredientUnit() == rhs.getIngredientUnit())
+//        return true;
+//    return false;
+//}
