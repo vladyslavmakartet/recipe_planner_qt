@@ -112,3 +112,22 @@ bool Ingredient::operator==(const Ingredient &rhs) const
 //        return true;
 //    return false;
 //}
+void Recipe::write(QJsonObject &json) const
+{
+    json["name"] = recipeName;
+    json["recipe"] = recipeDescription;
+    QJsonArray ingredientArray;
+    for (const Ingredient &ingredient : ingredients) {
+        QJsonObject ingredientObject;
+        ingredient.write(ingredientObject);
+        ingredientArray.append(ingredientObject);
+    }
+    json["ingredients"] = ingredientArray;
+}
+void Ingredient::write(QJsonObject &json) const
+{
+    json["ingredient"] = name;
+    json["quantity"] = quantity;
+    json["unit"] = unit;
+
+}

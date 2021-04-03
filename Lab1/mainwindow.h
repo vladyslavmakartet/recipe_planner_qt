@@ -12,6 +12,12 @@
 #include <QStandardItem>
 #include "showfullrecipedialog.h"
 #include "editinmaindialog.h"
+
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QFile>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -25,6 +31,9 @@ public:
     ~MainWindow();
 //    void setRecipe(const Recipe &recipe);
     void setUpTableMain(const Recipe &recipe);
+    void read(const QJsonObject &json);
+    void write(QJsonObject &json) const;
+    bool saveFileJSON() const;
 
 private slots:
     void CreateShoppingList();
@@ -40,9 +49,10 @@ private slots:
 
     void on_editButton_clicked();
     void updateData(const Recipe &recipe, const QModelIndex);//QModelIndexList);
+    void saveFile();
 
 signals:
-
+    void save();
 
 private:
     Ui::MainWindow *ui;

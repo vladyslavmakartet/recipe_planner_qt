@@ -25,7 +25,6 @@ HEADERS += \
     entrydialog.h \
     ingredienttablemodel.h \
     mainwindow.h \
-    json.hpp \
     menudialog.h \
     recipetablemodel.h \
     showfullrecipedialog.h

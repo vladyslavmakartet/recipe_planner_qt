@@ -3,6 +3,10 @@
 #include <qstring.h>
 #include <QFloat16>
 #include <QList>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonDocument>
+
 class Recipe;
 class Ingredient;
 
@@ -23,6 +27,11 @@ public:
     bool operator==(const Recipe &rhs)const;
     //bool operator==(const QVector<Ingredient> &rhs)const;
     void setRecipeIngredients(const QVector<Ingredient> data);
+
+
+    void read(const QJsonObject &json);
+    void write(QJsonObject &json) const;
+
 };
 Q_DECLARE_METATYPE(Recipe)
 
@@ -46,6 +55,10 @@ public:
     bool checkIfEqual(QString name, float quantity, QString unit);
     bool operator==(const Ingredient &rhs)const;
     //bool operator==(const Ingredient &lhs, const Ingredient &rhs);
+
+    void read(const QJsonObject &json);
+    void write(QJsonObject &json) const;
+
 };
 Q_DECLARE_METATYPE(Ingredient)
 

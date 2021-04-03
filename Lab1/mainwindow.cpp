@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionCreate_shopping_list,&QAction::triggered, this, &MainWindow::CreateShoppingList);
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::exit);
     connect(ui->tableView, &QAbstractItemView::clicked,this, &MainWindow::enableButtonsMainWindow);
+    connect(ui->actionSave,&QAction::triggered, this, &MainWindow::saveFile);
 
     mainModel = new RecipeTableModel();
     ui->tableView->setModel(mainModel);
@@ -164,8 +165,32 @@ void MainWindow::updateData(const Recipe &recipe, QModelIndex selected)//QModelI
     ui->tableView->resizeRowsToContents();
 }
 
+void MainWindow::write(QJsonObject &json) const
+{
+    QJsonArray recipeArray;
+    for (const Recipe &recipe : recipes) {
+        QJsonObject recipeObject;
+        recipe.write(recipeObject);
+        recipeArray.append(recipeObject);
+    }
+    json["recipe"] = recipeArray;
+}
 
+bool MainWindow::saveFileJSON() const
+{
+    QFile saveFile("recipes.json");
 
+    if (!saveFile.open(QIODevice::WriteOnly)) {
+        qWarning("Couldn't open save file.");
+        return false;
+    }
+    QJsonObject recipeObject;
+    write(recipeObject);
+    saveFile.write(QJsonDocument(recipeObject).toJson());
+    return true;
+}
 
-
-
+void MainWindow::saveFile()
+{
+    this->saveFileJSON();
+}
