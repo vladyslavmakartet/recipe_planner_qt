@@ -23,7 +23,7 @@ class EntryDialog : public QDialog
 public:
     explicit EntryDialog(QWidget *parent = nullptr);
     ~EntryDialog();
-    //void returnDataToMainWindow();
+    void returnDataToMainWindow();
 
 private slots:
     void allLinesFilled();
@@ -32,11 +32,14 @@ private slots:
     void enableButtons();
     void on_modifyButton_clicked();
     void on_deleteButton_clicked();
-    void on_buttonBox_accepted();
+    void on_okButton_clicked();
+    void on_applyButton_clicked();
+    void on_cancelButton_clicked();
 
 signals:
     void clearLineEdits();
     void FieldsFilled();
+    void applyPressed(const Recipe &recipe);
 
 private:
     Ui::EntryDialog *ui;

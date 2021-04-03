@@ -19,7 +19,8 @@ public:
     QVector<Ingredient> getRecipeIngredients() const;
     void setRecipeName(const QString);
     void setRecipeDescription(const QString);
-    void setRecipeIngredients(const Ingredient data);
+    //void setRecipeIngredient(const Ingredient data);
+    void setRecipeIngredients(const QVector<Ingredient> data);
 };
 Q_DECLARE_METATYPE(Recipe)
 

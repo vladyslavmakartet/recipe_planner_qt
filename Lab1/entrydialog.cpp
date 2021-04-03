@@ -30,13 +30,14 @@ EntryDialog::EntryDialog(QWidget *parent) :
             "background-color:white;"
         "}");
     ui->IngredientsTableView->setModel(model);
-
+    //ui->buttonBox->button//(QDialogButtonBox::Apply, QDialogButtonBox::AcceptRole);
 
     ui->IngredientsTableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //To disable editing
     ui->addButton->setEnabled(false);
     ui->modifyButton->setEnabled(false);
     ui->deleteButton->setEnabled(false);
-    ui->buttonBox->button(QDialogButtonBox::Apply)->setEnabled(false);
+    //ui->buttonBox->button(QDialogButtonBox::Apply)->setEnabled(false);
+    ui->applyButton->setEnabled(false);
     ui->IngredientsTableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->IngredientsTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     connect(ui->ingredientNameLine, &QLineEdit::textChanged, this, &EntryDialog::allLinesFilled);
@@ -55,7 +56,10 @@ EntryDialog::EntryDialog(QWidget *parent) :
     connect(this, &EntryDialog::clearLineEdits,ui->QuantityLine, &QLineEdit::clear);
     connect(this, &EntryDialog::clearLineEdits,ui->UnitLine, &QLineEdit::clear);
 
+    //QPushButton* applyButton = ui->buttonBox->button(QDialogButtonBox::Apply);
 
+
+    //connect(applyButton, SIGNAL(clicked(QAbstractButton*Apply)),this,SLOT(on_buttonBox_applied()));
 
 
 }
@@ -83,8 +87,8 @@ void EntryDialog::allFieldsFilled()
     && !ui->RecipeNameLine->text().isEmpty()
     && !ui->RecipeTextEdit->document()->isEmpty();
 
-    ui->buttonBox->button(QDialogButtonBox::Apply)->setEnabled(ok);
-
+    //ui->buttonBox->button(QDialogButtonBox::Apply)->setEnabled(ok);
+    ui->applyButton->setEnabled(ok);
 }
 
 
@@ -191,7 +195,20 @@ void EntryDialog::on_deleteButton_clicked()
 }
 
 
-void EntryDialog::on_buttonBox_accepted()
+void EntryDialog::on_okButton_clicked()
 {
-    //Recipe *recipe = new Recipe(ui->RecipeNameLine->text(),ui->RecipeTextEdit->toPlainText());
+    done(Accepted);
+}
+
+void EntryDialog::on_applyButton_clicked()
+{
+    Recipe *recipe = new Recipe(ui->RecipeNameLine->text(),ui->RecipeTextEdit->toPlainText(),ingredientVector);
+    emit applyPressed(*recipe);
+    delete recipe;
+    setResult(Accepted);
+}
+
+void EntryDialog::on_cancelButton_clicked()
+{
+    done(Rejected);
 }

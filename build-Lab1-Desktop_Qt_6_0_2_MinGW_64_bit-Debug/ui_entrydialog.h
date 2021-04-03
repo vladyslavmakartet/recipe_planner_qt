@@ -10,16 +10,15 @@
 #define UI_ENTRYDIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAbstractButton>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
@@ -29,16 +28,20 @@ QT_BEGIN_NAMESPACE
 class Ui_EntryDialog
 {
 public:
-    QHBoxLayout *horizontalLayout_2;
+    QGridLayout *gridLayout_2;
     QGridLayout *gridLayout;
+    QVBoxLayout *verticalLayout_5;
+    QPushButton *okButton;
+    QPushButton *cancelButton;
+    QPushButton *applyButton;
+    QSpacerItem *verticalSpacer;
     QVBoxLayout *verticalLayout_4;
-    QLabel *label_4;
+    QLabel *RecipeNameLabel;
     QLineEdit *RecipeNameLine;
     QLabel *recipeLabel;
     QTextEdit *RecipeTextEdit;
     QLabel *ingredientsLabel;
     QTableView *IngredientsTableView;
-    QDialogButtonBox *buttonBox;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QLineEdit *ingredientNameLine;
@@ -58,16 +61,40 @@ public:
         if (EntryDialog->objectName().isEmpty())
             EntryDialog->setObjectName(QString::fromUtf8("EntryDialog"));
         EntryDialog->resize(800, 600);
-        horizontalLayout_2 = new QHBoxLayout(EntryDialog);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        gridLayout_2 = new QGridLayout(EntryDialog);
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
+        okButton = new QPushButton(EntryDialog);
+        okButton->setObjectName(QString::fromUtf8("okButton"));
+
+        verticalLayout_5->addWidget(okButton);
+
+        cancelButton = new QPushButton(EntryDialog);
+        cancelButton->setObjectName(QString::fromUtf8("cancelButton"));
+
+        verticalLayout_5->addWidget(cancelButton);
+
+        applyButton = new QPushButton(EntryDialog);
+        applyButton->setObjectName(QString::fromUtf8("applyButton"));
+
+        verticalLayout_5->addWidget(applyButton);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_5->addItem(verticalSpacer);
+
+
+        gridLayout->addLayout(verticalLayout_5, 0, 1, 1, 1);
+
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        label_4 = new QLabel(EntryDialog);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
+        RecipeNameLabel = new QLabel(EntryDialog);
+        RecipeNameLabel->setObjectName(QString::fromUtf8("RecipeNameLabel"));
 
-        verticalLayout_4->addWidget(label_4);
+        verticalLayout_4->addWidget(RecipeNameLabel);
 
         RecipeNameLine = new QLineEdit(EntryDialog);
         RecipeNameLine->setObjectName(QString::fromUtf8("RecipeNameLine"));
@@ -96,13 +123,6 @@ public:
 
 
         gridLayout->addLayout(verticalLayout_4, 0, 0, 1, 1);
-
-        buttonBox = new QDialogButtonBox(EntryDialog);
-        buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
-        buttonBox->setOrientation(Qt::Vertical);
-        buttonBox->setStandardButtons(QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-
-        gridLayout->addWidget(buttonBox, 0, 1, 1, 1);
 
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -170,12 +190,10 @@ public:
         gridLayout->addLayout(horizontalLayout, 1, 0, 1, 1);
 
 
-        horizontalLayout_2->addLayout(gridLayout);
+        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
 
 
         retranslateUi(EntryDialog);
-        QObject::connect(buttonBox, &QDialogButtonBox::accepted, EntryDialog, qOverload<>(&QDialog::accept));
-        QObject::connect(buttonBox, &QDialogButtonBox::rejected, EntryDialog, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(EntryDialog);
     } // setupUi
@@ -183,7 +201,10 @@ public:
     void retranslateUi(QDialog *EntryDialog)
     {
         EntryDialog->setWindowTitle(QCoreApplication::translate("EntryDialog", "Add", nullptr));
-        label_4->setText(QCoreApplication::translate("EntryDialog", "Recipe name", nullptr));
+        okButton->setText(QCoreApplication::translate("EntryDialog", "OK", nullptr));
+        cancelButton->setText(QCoreApplication::translate("EntryDialog", "Cancel", nullptr));
+        applyButton->setText(QCoreApplication::translate("EntryDialog", "Apply", nullptr));
+        RecipeNameLabel->setText(QCoreApplication::translate("EntryDialog", "Recipe name", nullptr));
         recipeLabel->setText(QCoreApplication::translate("EntryDialog", "Recipe", nullptr));
         ingredientsLabel->setText(QCoreApplication::translate("EntryDialog", "Ingredients", nullptr));
         nameLabel->setText(QCoreApplication::translate("EntryDialog", "Name", nullptr));

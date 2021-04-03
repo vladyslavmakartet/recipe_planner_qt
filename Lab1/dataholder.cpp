@@ -27,10 +27,18 @@ QVector<Ingredient> Recipe::getRecipeIngredients() const
 {
     return this->ingredients;
 }
-void Recipe::setRecipeIngredients(const Ingredient data)
+//void Recipe::setRecipeIngredient(const Ingredient data)
+//{
+//    this->ingredients.append(data);
+//}
+
+
+void Recipe::setRecipeIngredients(const QVector<Ingredient> data)
 {
-    this->ingredients.append(data);
+    this->ingredients=data;
 }
+
+
 Ingredient::Ingredient(){}
 Ingredient::Ingredient(const QString newName, const float newQuantity, const QString newUnit)
 {

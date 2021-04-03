@@ -71,7 +71,13 @@ QVariant RecipeTableModel::data(const QModelIndex &index, int role) const
                 return recipe.getRecipeDescription();
             case 2:
             //QVariant var = QVariant::fromValue(recipes);
-                return QVariant::fromValue(recipes);
+                //return QVariant::fromValue(recipes);
+
+            //recipe.setRecipeIngredients(value.value<QVector<Ingredient>>());
+
+            //return QVariant::fromValue(recipe.getRecipeIngredients());
+                //return QVariant::fromValue(recipe.getRecipeIngredients());
+                return QVariant::fromValue(recipe.getRecipeIngredients().at(index.row()));
             default:
                 break;
         //else if (index.column() == 2)   // FIXME: Implement me!
@@ -105,7 +111,10 @@ bool RecipeTableModel::setData(const QModelIndex &index, const QVariant &value, 
                 break;/// to add ingredients
             case 2:
                 //recipe.setRecipeIngredients(QVariant::fromValue(value));
-                recipe.setRecipeIngredients(value.value<Ingredient>());
+                //recipe.setRecipeIngredients(value.value<Ingredient>());
+                //QVector<Ingredient> v = value.value<QVector<Ingredient>>();
+                recipe.setRecipeIngredients(value.value<QVector<Ingredient>>());
+                //recipe.setRecipeIngredients(var.setValue<QVector<Ingredient>>(value));
                 break;
             default:
                 return false;
