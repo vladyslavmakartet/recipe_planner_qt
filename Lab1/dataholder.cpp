@@ -31,7 +31,21 @@ QVector<Ingredient> Recipe::getRecipeIngredients() const
 //{
 //    this->ingredients.append(data);
 //}
+bool Recipe::operator==(const Recipe &rhs) const
+{
+    if(this->recipeName == rhs.recipeName
+            && this->recipeDescription == rhs.recipeDescription
+            && this->ingredients == rhs.ingredients)
+        return true;
+    return false;
+}
 
+//bool operator==(const Recipe &rhs)const;
+//bool operator==(const QVector<Ingredient> &rhs)const;
+//bool Recipe::operator==(const QVector<Ingredient> &rhs)const
+//{
+//   return this->ingredients == rhs;
+//}
 
 void Recipe::setRecipeIngredients(const QVector<Ingredient> data)
 {

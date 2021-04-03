@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     connect(ui->actionCreate_shopping_list,&QAction::triggered, this, &MainWindow::CreateShoppingList);
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::exit);
+    connect(ui->tableView, &QAbstractItemView::clicked,this, &MainWindow::enableButtonsMainWindow);
 
     mainModel = new RecipeTableModel();
     ui->tableView->setModel(mainModel);
@@ -69,19 +70,17 @@ void MainWindow::on_addButton_clicked()
         //dialog->setAttribute(Qt::WA_DeleteOnClose);
         //dialog->exec();
         dialog->open();
-        connect(dialog, &EntryDialog::applyPressed,this,&MainWindow::setRecipe);
+        //connect(dialog, &EntryDialog::applyPressed,this,&MainWindow::setRecipe);
         connect(dialog, &EntryDialog::applyPressed,this,&MainWindow::setUpTableMain);
-
+        //connect(ui->tableView, &QAbstractItemView::clicked,this, &EntryDialog::enableButtons);
 
 }
-void MainWindow::setRecipe(const Recipe &recipe)
+
+void MainWindow::setUpTableMain(const Recipe &recipe)
 {
-    recipes.append(recipe);
-}
-void MainWindow::setUpTableMain()
-{
-    if (!recipes.isEmpty())
-    {
+
+    if(!recipes.contains(recipe)){
+        recipes.append(recipe);
         mainModel->insertRow(mainModel->rowCount());
         QModelIndex index = mainModel->index(mainModel->rowCount()-1, 0, QModelIndex());
         mainModel->setData(index,recipes[index.row()].getRecipeName(),Qt::EditRole);
@@ -94,11 +93,20 @@ void MainWindow::setUpTableMain()
         //index = mainModel->index(mainModel->rowCount()-1, 2, QModelIndex());
         //mainModel->setData(index,QVariant::fromValue(recipes[index.row()].getRecipeIngredients()),Qt::EditRole);
         //ui->tableView->setModel(mainModel);
+    //}
     }
 }
 
 
+void MainWindow::enableButtonsMainWindow()
+{
+    if(!recipes.isEmpty()){
 
+        ui->editButton->setEnabled(true);
+        ui->deleteButton->setEnabled(true);
+    }
+
+}
 
 
 
@@ -113,5 +121,51 @@ void MainWindow::setUpTableMain()
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
     showFullRecipeDialog *dialogFullRecipe = new showFullRecipeDialog(recipes[index.row()],this);
-    dialogFullRecipe->open();
+    dialogFullRecipe->show(); //CHECK IF ITEM WAS DELETED!!! POTENTIAL CRASH!!!
 }
+
+//void MainWindow::on_tableView_clicked()
+//{
+//            ui->editButton->setEnabled(true);
+//            ui->deleteButton->setEnabled(true);
+//}
+
+void MainWindow::on_deleteButton_clicked()
+{
+    QModelIndexList selected = ui->tableView->selectionModel()->selectedIndexes();
+    if (!selected.isEmpty())
+      {
+         recipes.removeAt(selected.first().row());
+         ui->tableView->model()->removeRow(selected.first().row());
+         if (recipes.isEmpty())
+         {
+             ui->editButton->setEnabled(false);
+             ui->deleteButton->setEnabled(false);
+
+         }
+      }
+}
+
+void MainWindow::on_editButton_clicked()
+{
+    //QModelIndexList selected = ui->tableView->selectionModel()->selectedIndexes();
+    QModelIndex selected = mainModel->index(ui->tableView->selectionModel()->currentIndex().row(),0, QModelIndex());
+
+    EditInMainDialog *editDataMainDialog = new EditInMainDialog(recipes[selected.row()],selected,this);
+    editDataMainDialog->open();
+
+    connect(editDataMainDialog, &EditInMainDialog::dataEdited,this,&MainWindow::updateData);
+}
+void MainWindow::updateData(const Recipe &recipe, QModelIndex selected)//QModelIndexList selected)
+{
+    recipes[selected.row()]=recipe;
+    mainModel->setData(selected,recipes[selected.row()].getRecipeName(),Qt::EditRole);
+    ui->tableView->setModel(mainModel);
+    ui->tableView->resizeRowsToContents();
+}
+
+
+
+
+
+

@@ -11,6 +11,7 @@
 #include <QStandardItemModel>
 #include <QStandardItem>
 #include "showfullrecipedialog.h"
+#include "editinmaindialog.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -22,14 +23,23 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void setRecipe(const Recipe &recipe);
+//    void setRecipe(const Recipe &recipe);
+    void setUpTableMain(const Recipe &recipe);
 
 private slots:
     void CreateShoppingList();
     void exit();
     void on_addButton_clicked();
+    void enableButtonsMainWindow();
 
     void on_tableView_doubleClicked(const QModelIndex &index);
+
+    //void on_tableView_clicked();
+
+    void on_deleteButton_clicked();
+
+    void on_editButton_clicked();
+    void updateData(const Recipe &recipe, const QModelIndex);//QModelIndexList);
 
 signals:
 
@@ -38,6 +48,6 @@ private:
     Ui::MainWindow *ui;
     QVector<Recipe> recipes;
     RecipeTableModel *mainModel;
-    void setUpTableMain();
+
 };
 #endif // MAINWINDOW_H

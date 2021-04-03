@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     dataholder.cpp \
+    editinmaindialog.cpp \
     entrydialog.cpp \
     ingredienttablemodel.cpp \
     main.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
 
 HEADERS += \
     dataholder.h \
+    editinmaindialog.h \
     entrydialog.h \
     ingredienttablemodel.h \
     mainwindow.h \
@@ -29,6 +31,7 @@ HEADERS += \
     showfullrecipedialog.h
 
 FORMS += \
+    editinmaindialog.ui \
     entrydialog.ui \
     mainwindow.ui \
     menudialog.ui \

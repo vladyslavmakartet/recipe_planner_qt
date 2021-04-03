@@ -22,8 +22,9 @@ class EntryDialog : public QDialog
 
 public:
     explicit EntryDialog(QWidget *parent = nullptr);
+    //explicit EntryDialog(const Recipe,const QModelIndexList,QWidget *parent = nullptr);
     ~EntryDialog();
-    void returnDataToMainWindow();
+    //void returnDataToMainWindow();
 
 private slots:
     void allLinesFilled();
@@ -35,17 +36,20 @@ private slots:
     void on_okButton_clicked();
     void on_applyButton_clicked();
     void on_cancelButton_clicked();
+    //void on_applyButton_clicked_data_edited();
 
 signals:
     void clearLineEdits();
     void FieldsFilled();
     void applyPressed(const Recipe &recipe);
+    //void dataEdited(const Recipe &recipe, const QModelIndexList selected);
 
 private:
     Ui::EntryDialog *ui;
     ingredientTableModel *model;
     Ingredient ingredient;
     QVector<Ingredient> ingredientVector;
+    //QModelIndexList selected;
 };
 
 #endif // ENTRYDIALOG_H

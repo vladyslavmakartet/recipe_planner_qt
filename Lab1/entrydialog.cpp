@@ -56,6 +56,7 @@ EntryDialog::EntryDialog(QWidget *parent) :
     connect(this, &EntryDialog::clearLineEdits,ui->QuantityLine, &QLineEdit::clear);
     connect(this, &EntryDialog::clearLineEdits,ui->UnitLine, &QLineEdit::clear);
 
+
     //QPushButton* applyButton = ui->buttonBox->button(QDialogButtonBox::Apply);
 
 
@@ -63,6 +64,9 @@ EntryDialog::EntryDialog(QWidget *parent) :
 
 
 }
+
+
+
 
 EntryDialog::~EntryDialog()
 {
@@ -212,3 +216,70 @@ void EntryDialog::on_cancelButton_clicked()
 {
     done(Rejected);
 }
+
+//EntryDialog::EntryDialog(const Recipe recipe, const QModelIndexList select,QWidget *parent) :
+//    QDialog(parent),
+//    ui(new Ui::EntryDialog)
+//{
+
+//    ui->setupUi(this);
+//    model = new ingredientTableModel(recipe.getRecipeIngredients());
+//    ingredientVector = recipe.getRecipeIngredients();
+
+//    ui->RecipeNameLine->setText(recipe.getRecipeName());
+//    ui->RecipeTextEdit->setText(recipe.getRecipeDescription());
+//    ui->IngredientsTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+
+//    ui->IngredientsTableView->setCornerButtonEnabled(false);
+//    ui->IngredientsTableView->setStyleSheet("QHeaderView::section{"
+//            "border-top:0px solid #D8D8D8;"
+//            "border-left:0px solid #D8D8D8;"
+//            "border-right:1px solid #D8D8D8;"
+//            "border-bottom: 1px solid #D8D8D8;"
+//            "background-color:white;"
+//            "padding:4px;"
+//        "}");
+//    ui->IngredientsTableView->setStyleSheet("QTableCornerButton::section{"
+//            "border-top:0px solid #D8D8D8;"
+//            "border-left:0px solid #D8D8D8;"
+//            "border-right:1px solid #D8D8D8;"
+//            "border-bottom: 1px solid #D8D8D8;"
+//            "background-color:white;"
+//        "}");
+//    ui->IngredientsTableView->setModel(model);
+
+
+//    ui->IngredientsTableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //To disable editing
+//    ui->addButton->setEnabled(false);
+//    ui->modifyButton->setEnabled(false);
+//    ui->deleteButton->setEnabled(false);
+
+//    ui->applyButton->setEnabled(false);
+//    ui->IngredientsTableView->setSelectionMode(QAbstractItemView::SingleSelection);
+//    ui->IngredientsTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+//    connect(ui->ingredientNameLine, &QLineEdit::textChanged, this, &EntryDialog::allLinesFilled);
+//    connect(ui->QuantityLine, &QLineEdit::textChanged, this, &EntryDialog::allLinesFilled);
+//    connect(ui->UnitLine, &QLineEdit::textChanged, this, &EntryDialog::allLinesFilled);
+
+//    connect(ui->RecipeNameLine, &QLineEdit::textChanged, this, &EntryDialog::allFieldsFilled);
+//    connect(ui->RecipeTextEdit, &QTextEdit::textChanged, this, &EntryDialog::allFieldsFilled);
+//    connect(this, &EntryDialog::FieldsFilled, this, &EntryDialog::allFieldsFilled);
+
+//    connect(ui->IngredientsTableView, &QAbstractItemView::clicked,this, &EntryDialog::enableButtons);
+
+//    connect(this, &EntryDialog::clearLineEdits,ui->ingredientNameLine, &QLineEdit::clear);
+//    connect(this, &EntryDialog::clearLineEdits,ui->QuantityLine, &QLineEdit::clear);
+//    connect(this, &EntryDialog::clearLineEdits,ui->UnitLine, &QLineEdit::clear);
+//    selected = select;
+//    connect(ui->applyButton, &QPushButton::clicked,this,&EntryDialog::on_applyButton_clicked_data_edited);
+//    //connect(ui->applyButton, SIGNAL(clicked()),this, SLOT(on_applyButton_clicked_data_edited(QModelIndexList)));
+
+//}
+//void EntryDialog::on_applyButton_clicked_data_edited()
+//{
+//    Recipe *recipe = new Recipe(ui->RecipeNameLine->text(),ui->RecipeTextEdit->toPlainText(),ingredientVector);
+//    emit dataEdited(*recipe, selected);
+//    delete recipe;
+//    setResult(Accepted);
+//}

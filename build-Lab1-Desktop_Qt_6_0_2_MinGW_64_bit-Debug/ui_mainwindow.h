@@ -33,6 +33,7 @@ public:
     QAction *actionCreate_shopping_list;
     QAction *actionOpen;
     QAction *actionSave;
+    QAction *actionAbout;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout_2;
     QHBoxLayout *horizontalLayout;
@@ -44,6 +45,7 @@ public:
     QSpacerItem *verticalSpacer;
     QMenuBar *menubar;
     QMenu *menuCreate_shopping_list;
+    QMenu *menuHelp;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -59,6 +61,8 @@ public:
         actionOpen->setObjectName(QString::fromUtf8("actionOpen"));
         actionSave = new QAction(MainWindow);
         actionSave->setObjectName(QString::fromUtf8("actionSave"));
+        actionAbout = new QAction(MainWindow);
+        actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayout_2 = new QHBoxLayout(centralwidget);
@@ -67,6 +71,8 @@ public:
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         tableView = new QTableView(centralwidget);
         tableView->setObjectName(QString::fromUtf8("tableView"));
+        tableView->setSelectionMode(QAbstractItemView::SingleSelection);
+        tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         horizontalLayout->addWidget(tableView);
 
@@ -104,18 +110,22 @@ public:
         menubar->setGeometry(QRect(0, 0, 800, 20));
         menuCreate_shopping_list = new QMenu(menubar);
         menuCreate_shopping_list->setObjectName(QString::fromUtf8("menuCreate_shopping_list"));
+        menuHelp = new QMenu(menubar);
+        menuHelp->setObjectName(QString::fromUtf8("menuHelp"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
         menubar->addAction(menuCreate_shopping_list->menuAction());
+        menubar->addAction(menuHelp->menuAction());
         menuCreate_shopping_list->addAction(actionOpen);
         menuCreate_shopping_list->addAction(actionSave);
         menuCreate_shopping_list->addSeparator();
         menuCreate_shopping_list->addAction(actionCreate_shopping_list);
         menuCreate_shopping_list->addSeparator();
         menuCreate_shopping_list->addAction(actionExit);
+        menuHelp->addAction(actionAbout);
 
         retranslateUi(MainWindow);
 
@@ -129,6 +139,7 @@ public:
         actionCreate_shopping_list->setText(QCoreApplication::translate("MainWindow", "Create shopping list", nullptr));
         actionOpen->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
         actionSave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
+        actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
 #if QT_CONFIG(tooltip)
         addButton->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Add a new recipe</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -142,6 +153,7 @@ public:
 #endif // QT_CONFIG(tooltip)
         deleteButton->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         menuCreate_shopping_list->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));
+        menuHelp->setTitle(QCoreApplication::translate("MainWindow", "Help", nullptr));
     } // retranslateUi
 
 };

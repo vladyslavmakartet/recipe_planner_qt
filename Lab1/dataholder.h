@@ -20,6 +20,8 @@ public:
     void setRecipeName(const QString);
     void setRecipeDescription(const QString);
     //void setRecipeIngredient(const Ingredient data);
+    bool operator==(const Recipe &rhs)const;
+    //bool operator==(const QVector<Ingredient> &rhs)const;
     void setRecipeIngredients(const QVector<Ingredient> data);
 };
 Q_DECLARE_METATYPE(Recipe)
