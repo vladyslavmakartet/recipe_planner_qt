@@ -15,7 +15,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     menudialog.cpp \
-    recipetablemodel.cpp
+    recipetablemodel.cpp \
+    showfullrecipedialog.cpp
 
 HEADERS += \
     dataholder.h \
@@ -24,12 +25,14 @@ HEADERS += \
     mainwindow.h \
     json.hpp \
     menudialog.h \
-    recipetablemodel.h
+    recipetablemodel.h \
+    showfullrecipedialog.h
 
 FORMS += \
     entrydialog.ui \
     mainwindow.ui \
-    menudialog.ui
+    menudialog.ui \
+    showfullrecipedialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

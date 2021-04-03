@@ -4,6 +4,13 @@
 #include <QMainWindow>
 #include "dataholder.h"
 #include "recipetablemodel.h"
+#include "ui_mainwindow.h"
+#include "entrydialog.h"
+#include "menudialog.h"
+#include <QTableView>
+#include <QStandardItemModel>
+#include <QStandardItem>
+#include "showfullrecipedialog.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -21,6 +28,8 @@ private slots:
     void CreateShoppingList();
     void exit();
     void on_addButton_clicked();
+
+    void on_tableView_doubleClicked(const QModelIndex &index);
 
 signals:
 

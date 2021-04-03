@@ -1,10 +1,5 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "entrydialog.h"
-#include "menudialog.h"
-#include <QTableView>
-#include <QStandardItemModel>
-#include <QStandardItem>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     mainModel = new RecipeTableModel();
     ui->tableView->setModel(mainModel);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->setWordWrap(true);
     ui->editButton->setEnabled(false);
     ui->deleteButton->setEnabled(false);
     //ui->IngredientsTableView->setStyleSheet("QHeaderView::section { background-color:gray }");
@@ -89,13 +85,15 @@ void MainWindow::setUpTableMain()
         mainModel->insertRow(mainModel->rowCount());
         QModelIndex index = mainModel->index(mainModel->rowCount()-1, 0, QModelIndex());
         mainModel->setData(index,recipes[index.row()].getRecipeName(),Qt::EditRole);
+        ui->tableView->setModel(mainModel);
+        ui->tableView->resizeRowsToContents();
         //mainModel->index(mainModel->rowCount())
 
-        index = mainModel->index(mainModel->rowCount()-1, 1, QModelIndex());
-        mainModel->setData(index,recipes[index.row()].getRecipeDescription(),Qt::EditRole);
-        index = mainModel->index(mainModel->rowCount()-1, 2, QModelIndex());
-        mainModel->setData(index,QVariant::fromValue(recipes[index.row()].getRecipeIngredients()),Qt::EditRole);
-        ui->tableView->setModel(mainModel);
+        //index = mainModel->index(mainModel->rowCount()-1, 1, QModelIndex());
+        //mainModel->setData(index,recipes[index.row()].getRecipeDescription(),Qt::EditRole);
+        //index = mainModel->index(mainModel->rowCount()-1, 2, QModelIndex());
+        //mainModel->setData(index,QVariant::fromValue(recipes[index.row()].getRecipeIngredients()),Qt::EditRole);
+        //ui->tableView->setModel(mainModel);
     }
 }
 
@@ -111,3 +109,9 @@ void MainWindow::setUpTableMain()
 
 
 
+
+void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
+{
+    showFullRecipeDialog *dialogFullRecipe = new showFullRecipeDialog(recipes[index.row()],this);
+    dialogFullRecipe->open();
+}

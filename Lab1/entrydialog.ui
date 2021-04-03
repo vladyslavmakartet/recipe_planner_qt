@@ -64,7 +64,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="RecipeNameLine"/>
+        <widget class="QLineEdit" name="RecipeNameLine">
+         <property name="maxLength">
+          <number>256</number>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="recipeLabel">
@@ -93,7 +97,11 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLineEdit" name="ingredientNameLine"/>
+          <widget class="QLineEdit" name="ingredientNameLine">
+           <property name="maxLength">
+            <number>256</number>
+           </property>
+          </widget>
          </item>
          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLabel" name="nameLabel">
@@ -107,7 +115,11 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QLineEdit" name="QuantityLine"/>
+          <widget class="QLineEdit" name="QuantityLine">
+           <property name="maxLength">
+            <number>256</number>
+           </property>
+          </widget>
          </item>
          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLabel" name="quantityLabel">
@@ -121,7 +133,11 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QLineEdit" name="UnitLine"/>
+          <widget class="QLineEdit" name="UnitLine">
+           <property name="maxLength">
+            <number>256</number>
+           </property>
+          </widget>
          </item>
          <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
           <widget class="QLabel" name="unitLabel">

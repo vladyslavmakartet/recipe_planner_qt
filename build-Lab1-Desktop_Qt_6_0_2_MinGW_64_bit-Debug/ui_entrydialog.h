@@ -98,6 +98,7 @@ public:
 
         RecipeNameLine = new QLineEdit(EntryDialog);
         RecipeNameLine->setObjectName(QString::fromUtf8("RecipeNameLine"));
+        RecipeNameLine->setMaxLength(256);
 
         verticalLayout_4->addWidget(RecipeNameLine);
 
@@ -130,6 +131,7 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         ingredientNameLine = new QLineEdit(EntryDialog);
         ingredientNameLine->setObjectName(QString::fromUtf8("ingredientNameLine"));
+        ingredientNameLine->setMaxLength(256);
 
         verticalLayout->addWidget(ingredientNameLine);
 
@@ -145,6 +147,7 @@ public:
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         QuantityLine = new QLineEdit(EntryDialog);
         QuantityLine->setObjectName(QString::fromUtf8("QuantityLine"));
+        QuantityLine->setMaxLength(256);
 
         verticalLayout_2->addWidget(QuantityLine);
 
@@ -160,6 +163,7 @@ public:
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         UnitLine = new QLineEdit(EntryDialog);
         UnitLine->setObjectName(QString::fromUtf8("UnitLine"));
+        UnitLine->setMaxLength(256);
 
         verticalLayout_3->addWidget(UnitLine);
 

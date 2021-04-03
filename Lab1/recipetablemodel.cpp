@@ -18,18 +18,22 @@ QVariant RecipeTableModel::headerData(int section, Qt::Orientation orientation, 
     if (role != Qt::DisplayRole)
         return QVariant();
 
-    if (orientation == Qt::Horizontal) {
-        switch (section) {
-            case 0:
+    if (section == 0 && orientation == Qt::Horizontal) {
+//        switch (section) {
+//            case 0:
                 return tr("Recipe");
-            case 1:
-                return tr("Description");
-            case 2:
-                return tr("Ingredients");
-            default:
-                break;
+//            case 1:
+//                return tr("Description");
+//            case 2:
+//                return tr("Ingredients");
+//            default:
+//                break;
         }
-    }
+
+    if(orientation == Qt::Vertical)
+        {
+            return QString::number(section+1);
+        }
     return QVariant();
 }
 
@@ -52,7 +56,7 @@ int RecipeTableModel::rowCount(const QModelIndex &parent) const
 
 int RecipeTableModel::columnCount(const QModelIndex &parent) const
 {
-    return parent.isValid() ? 0 : 3;
+    return parent.isValid() ? 0 : 1;//3;
 }
 
 QVariant RecipeTableModel::data(const QModelIndex &index, int role) const
@@ -64,61 +68,57 @@ QVariant RecipeTableModel::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole){
         const auto &recipe = recipes.at(index.row());
 
-        switch (index.column()) {
-            case 0:
-                return recipe.getRecipeName();
-            case 1:
-                return recipe.getRecipeDescription();
-            case 2:
-            //QVariant var = QVariant::fromValue(recipes);
-                //return QVariant::fromValue(recipes);
+//        switch (index.column()) {
+//            case 0:
+//                return recipe.getRecipeName();
+//            case 1:
+//                return recipe.getRecipeDescription();
+//            case 2:
+//            //QVariant var = QVariant::fromValue(recipes);
+//                //return QVariant::fromValue(recipes);
 
-            //recipe.setRecipeIngredients(value.value<QVector<Ingredient>>());
+//            //recipe.setRecipeIngredients(value.value<QVector<Ingredient>>());
 
-            //return QVariant::fromValue(recipe.getRecipeIngredients());
-                //return QVariant::fromValue(recipe.getRecipeIngredients());
-                return QVariant::fromValue(recipe.getRecipeIngredients().at(index.row()));
-            default:
-                break;
-        //else if (index.column() == 2)   // FIXME: Implement me!
-        //    return recipe.getRecipeIngredient();
-        }
+//            //return QVariant::fromValue(recipe.getRecipeIngredients());
+//                //return QVariant::fromValue(recipe.getRecipeIngredients());
+//                return QVariant::fromValue(recipe.getRecipeIngredients().at(index.row()));
+//            default:
+//                break;
+//        //else if (index.column() == 2)   // FIXME: Implement me!
+//        //    return recipe.getRecipeIngredient();
+//        }
+        if (index.column() == 0)
+            return recipe.getRecipeName();
     }
     return QVariant();
 }
 
-//bool RecipeTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
-//{
-//    if (data(index, role) != value) {
-//        // FIXME: Implement me!
-//        emit dataChanged(index, index, QVector<int>() << role);
-//        return true;
-//    }
-//    return false;
-//}
+
 bool RecipeTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && role == Qt::EditRole) {
         const int row = index.row();
         auto recipe = recipes.at(row);
 
-        switch (index.column()) {
-            case 0:
-                recipe.setRecipeName(value.toString());
-                break;
-            case 1:
-                recipe.setRecipeDescription(value.toString());
-                break;/// to add ingredients
-            case 2:
-                //recipe.setRecipeIngredients(QVariant::fromValue(value));
-                //recipe.setRecipeIngredients(value.value<Ingredient>());
-                //QVector<Ingredient> v = value.value<QVector<Ingredient>>();
-                recipe.setRecipeIngredients(value.value<QVector<Ingredient>>());
-                //recipe.setRecipeIngredients(var.setValue<QVector<Ingredient>>(value));
-                break;
-            default:
-                return false;
-        }
+//        switch (index.column()) {
+//            case 0:
+//                recipe.setRecipeName(value.toString());
+//                break;
+//            case 1:
+//                recipe.setRecipeDescription(value.toString());
+//                break;/// to add ingredients
+//            case 2:
+//                //recipe.setRecipeIngredients(QVariant::fromValue(value));
+//                //recipe.setRecipeIngredients(value.value<Ingredient>());
+//                //QVector<Ingredient> v = value.value<QVector<Ingredient>>();
+//                recipe.setRecipeIngredients(value.value<QVector<Ingredient>>());
+//                //recipe.setRecipeIngredients(var.setValue<QVector<Ingredient>>(value));
+//                break;
+//            default:
+//                return false;
+//        }
+        if(index.column() == 0)
+            recipe.setRecipeName(value.toString());
         recipes.replace(row, recipe);
         emit dataChanged(index, index, {Qt::DisplayRole, Qt::EditRole});
 
