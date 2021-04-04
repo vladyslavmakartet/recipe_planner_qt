@@ -34,7 +34,7 @@ class RecipeTableModel : public QAbstractTableModel
 
 public:
     explicit RecipeTableModel(QObject *parent = nullptr);
-    explicit RecipeTableModel(const QList<Recipe> &recipes, QObject *parent = nullptr);
+    explicit RecipeTableModel(const QVector<Recipe> &recipes, QObject *parent = nullptr);
 
     // Header:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;

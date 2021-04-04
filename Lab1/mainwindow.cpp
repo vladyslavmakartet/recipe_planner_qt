@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->tableView, &QAbstractItemView::clicked,this, &MainWindow::enableButtonsMainWindow);
     connect(ui->actionSave,&QAction::triggered, this, &MainWindow::saveFile);
     connect(ui->actionSave_As,&QAction::triggered, this, &MainWindow::saveFileAs);
-
+    connect(ui->actionOpen,&QAction::triggered, this, &MainWindow::openFile);
     mainModel = new RecipeTableModel();
     ui->tableView->setModel(mainModel);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -181,10 +181,23 @@ void MainWindow::write(QJsonObject &json) const
 
 }
 
-bool MainWindow::saveFileJSON(QString FileName) const
+bool MainWindow::saveFileJSON(bool saveAs) const
 {
+    if(recipes.isEmpty()){
+        QMessageBox::information(nullptr, tr("No recipes to save"),
+               tr("There are no recipes to save. Add a recipe and try again."));
+        return false;
+    }
+    QString fileName = "recipes.json";
+    if(saveAs){
+        fileName = QFileDialog::getSaveFileName(nullptr,
+            tr("Save Recipes"), "",
+            tr("Recipes (*.json);;Json (*.json)"));
+        if (fileName.isEmpty())
+            return false;
+    }
 
-    QFile saveFile(FileName);
+    QFile saveFile(fileName);
 
     if (!saveFile.open(QIODevice::WriteOnly)) {
         qWarning("Unable to open file.");
@@ -201,23 +214,63 @@ bool MainWindow::saveFileJSON(QString FileName) const
 
 void MainWindow::saveFile()
 {
-//    QString fileName = QFileDialog::getSaveFileName(this,
-//        tr("Save Recipes"), "",
-//        tr("Recipes (*.json);;Json (*.json)"));
-//    if (!fileName.isEmpty())
-//        this->saveFileJSON(fileName);
-//    else
-        this->saveFileJSON("recipes.json");
+        //this->saveFileJSON("recipes.json");
+    this->saveFileJSON(false);
 }
 void MainWindow::saveFileAs()
 {
-    QString fileName = QFileDialog::getSaveFileName(this,
-        tr("Save Recipes"), "",
-        tr("Recipes (*.json);;Json (*.json)"));
-    if (fileName.isEmpty())
-        return;
-    else {
-        this->saveFileJSON(fileName);
-    }
+//    QString fileName = QFileDialog::getSaveFileName(this,
+//        tr("Save Recipes"), "",
+//        tr("Recipes (*.json);;Json (*.json)"));
+//    if (fileName.isEmpty())
+//        return;
+//    else {
+       this->saveFileJSON(true);
+
 }
 
+void MainWindow::read(const QJsonObject &json)
+{
+    if (json.contains("recipes") && json["recipes"].isArray()){
+        QJsonArray recipesArray = json["recipes"].toArray();
+        recipes.clear();
+        recipes.reserve(recipesArray.size());
+        for(int recipesIndex = 0; recipesIndex < recipesArray.size(); ++recipesIndex){
+            QJsonObject recipesObject = recipesArray[recipesIndex].toObject();
+            Recipe recipe;
+            recipe.read(recipesObject);
+            recipes.append(recipe);
+        }
+    }
+}
+bool MainWindow::loadFile()
+{
+    QString filename = QFileDialog::getOpenFileName(this,
+        tr("Open Recipes"), "",
+        tr("Recipes (*.json);;Json (*.json)"));
+    if(filename.isEmpty())
+        return false;
+    else {
+        QFile loadFile(filename);
+        if (!loadFile.open(QIODevice::ReadOnly)) {
+            qWarning("Unable to open file.");
+            return false;
+        }
+        QByteArray saveData = loadFile.readAll();
+        QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
+        read(loadDoc.object());
+        if(recipes.isEmpty()){
+            QMessageBox::information(this, tr("No recipes in file"),
+                   tr("The file you are attempting to open contains no recipes."));
+            return false;
+        }
+        return true;
+    }
+}
+void MainWindow::openFile()
+{
+    if(this->loadFile()){
+        mainModel = new RecipeTableModel(recipes);
+        ui->tableView->setModel(mainModel);
+    }
+}

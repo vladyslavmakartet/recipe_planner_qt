@@ -134,3 +134,34 @@ void Ingredient::write(QJsonObject &json) const
     json["unit"] = unit;
 
 }
+void Recipe::read(const QJsonObject &json)
+{
+    if (json.contains("name") && json["name"].isString())
+        recipeName = json["name"].toString();
+    if (json.contains("recipe") && json["recipe"].isString())
+        recipeDescription = json["recipe"].toString();
+    if (json.contains("ingredients") && json["ingredients"].isArray()){
+        QJsonArray ingredientsArray = json["ingredients"].toArray();
+        ingredients.clear();
+        ingredients.reserve(ingredientsArray.size());
+        for (int ingredientIndex = 0; ingredientIndex < ingredientsArray.size(); ++ingredientIndex){
+            QJsonObject ingredientsObject = ingredientsArray[ingredientIndex].toObject();
+            Ingredient ingredient;
+            ingredient.read(ingredientsObject);
+            ingredients.append(ingredient);
+        }
+
+    }
+}
+void Ingredient::read(const QJsonObject &json)
+{
+    if (json.contains("name") && json["name"].isString())
+        name = json["name"].toString();
+
+    if (json.contains("quantity") && json["quantity"].isString())
+        quantity = json["quantity"].toString().toFloat();
+
+    if (json.contains("unit") && json["unit"].isString())
+        unit = json["unit"].toString();
+
+}

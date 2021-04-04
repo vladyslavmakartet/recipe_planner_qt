@@ -14,9 +14,10 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QVBoxLayout>
@@ -26,26 +27,34 @@ QT_BEGIN_NAMESPACE
 class Ui_showFullRecipeDialog
 {
 public:
-    QHBoxLayout *horizontalLayout_2;
-    QHBoxLayout *horizontalLayout;
+    QGridLayout *gridLayout_2;
+    QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout;
     QLabel *nameLabel;
     QLabel *Name;
-    QLabel *descriptionLabel;
+    QLabel *recipeLabel;
     QTextEdit *Description;
     QLabel *ingredientsLabel;
     QTableView *ingredientsTableView;
+    QVBoxLayout *verticalLayout_2;
     QDialogButtonBox *buttonBox;
+    QSpacerItem *verticalSpacer;
 
     void setupUi(QDialog *showFullRecipeDialog)
     {
         if (showFullRecipeDialog->objectName().isEmpty())
             showFullRecipeDialog->setObjectName(QString::fromUtf8("showFullRecipeDialog"));
-        showFullRecipeDialog->resize(488, 452);
-        horizontalLayout_2 = new QHBoxLayout(showFullRecipeDialog);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        showFullRecipeDialog->setWindowModality(Qt::WindowModal);
+        showFullRecipeDialog->resize(430, 485);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(showFullRecipeDialog->sizePolicy().hasHeightForWidth());
+        showFullRecipeDialog->setSizePolicy(sizePolicy);
+        gridLayout_2 = new QGridLayout(showFullRecipeDialog);
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         nameLabel = new QLabel(showFullRecipeDialog);
@@ -69,10 +78,10 @@ public:
 
         verticalLayout->addWidget(Name);
 
-        descriptionLabel = new QLabel(showFullRecipeDialog);
-        descriptionLabel->setObjectName(QString::fromUtf8("descriptionLabel"));
+        recipeLabel = new QLabel(showFullRecipeDialog);
+        recipeLabel->setObjectName(QString::fromUtf8("recipeLabel"));
 
-        verticalLayout->addWidget(descriptionLabel);
+        verticalLayout->addWidget(recipeLabel);
 
         Description = new QTextEdit(showFullRecipeDialog);
         Description->setObjectName(QString::fromUtf8("Description"));
@@ -95,17 +104,31 @@ public:
         verticalLayout->addWidget(ingredientsTableView);
 
 
-        horizontalLayout->addLayout(verticalLayout);
+        gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
 
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         buttonBox = new QDialogButtonBox(showFullRecipeDialog);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
+        QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(buttonBox->sizePolicy().hasHeightForWidth());
+        buttonBox->setSizePolicy(sizePolicy1);
         buttonBox->setOrientation(Qt::Vertical);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
 
-        horizontalLayout->addWidget(buttonBox);
+        verticalLayout_2->addWidget(buttonBox);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer);
 
 
-        horizontalLayout_2->addLayout(horizontalLayout);
+        gridLayout->addLayout(verticalLayout_2, 0, 1, 1, 1);
+
+
+        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
 
 
         retranslateUi(showFullRecipeDialog);
@@ -120,7 +143,7 @@ public:
         showFullRecipeDialog->setWindowTitle(QCoreApplication::translate("showFullRecipeDialog", "Info", nullptr));
         nameLabel->setText(QCoreApplication::translate("showFullRecipeDialog", "Name", nullptr));
         Name->setText(QString());
-        descriptionLabel->setText(QCoreApplication::translate("showFullRecipeDialog", "Description", nullptr));
+        recipeLabel->setText(QCoreApplication::translate("showFullRecipeDialog", "Recipe", nullptr));
         ingredientsLabel->setText(QCoreApplication::translate("showFullRecipeDialog", "Ingredients", nullptr));
     } // retranslateUi
 

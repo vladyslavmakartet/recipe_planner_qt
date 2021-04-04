@@ -20,6 +20,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -27,7 +28,6 @@ QT_BEGIN_NAMESPACE
 class Ui_MenuDialog
 {
 public:
-    QGridLayout *gridLayout_3;
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_2;
@@ -36,7 +36,9 @@ public:
     QVBoxLayout *verticalLayout_3;
     QLabel *label_3;
     QListView *listView_2;
+    QVBoxLayout *verticalLayout_4;
     QDialogButtonBox *buttonBox;
+    QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_2;
     QVBoxLayout *verticalLayout;
     QLabel *label;
@@ -52,9 +54,7 @@ public:
             MenuDialog->setObjectName(QString::fromUtf8("MenuDialog"));
         MenuDialog->setEnabled(true);
         MenuDialog->resize(800, 600);
-        gridLayout_3 = new QGridLayout(MenuDialog);
-        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
-        gridLayout_2 = new QGridLayout();
+        gridLayout_2 = new QGridLayout(MenuDialog);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         gridLayout = new QGridLayout();
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
@@ -88,15 +88,26 @@ public:
 
         gridLayout->addLayout(verticalLayout_3, 0, 1, 1, 1);
 
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         buttonBox = new QDialogButtonBox(MenuDialog);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(buttonBox->sizePolicy().hasHeightForWidth());
+        buttonBox->setSizePolicy(sizePolicy);
         buttonBox->setOrientation(Qt::Vertical);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
 
-        gridLayout->addWidget(buttonBox, 0, 2, 1, 1);
+        verticalLayout_4->addWidget(buttonBox);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer);
 
 
-        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
+        gridLayout->addLayout(verticalLayout_4, 0, 2, 1, 1);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
@@ -120,11 +131,11 @@ public:
         horizontalLayout->setContentsMargins(-1, -1, -1, 0);
         pushButton = new QPushButton(MenuDialog);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+        pushButton->setSizePolicy(sizePolicy1);
 
         horizontalLayout->addWidget(pushButton);
 
@@ -142,10 +153,10 @@ public:
         horizontalLayout_2->addLayout(horizontalLayout);
 
 
-        gridLayout_2->addLayout(horizontalLayout_2, 1, 0, 1, 1);
+        gridLayout->addLayout(horizontalLayout_2, 1, 0, 1, 2);
 
 
-        gridLayout_3->addLayout(gridLayout_2, 0, 0, 1, 1);
+        gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
 
 
         retranslateUi(MenuDialog);
