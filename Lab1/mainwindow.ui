@@ -135,7 +135,7 @@
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>About Recipe Planner...</string>
    </property>
   </action>
   <action name="actionSave_As">

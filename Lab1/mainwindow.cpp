@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionSave,&QAction::triggered, this, &MainWindow::saveFile);
     connect(ui->actionSave_As,&QAction::triggered, this, &MainWindow::saveFileAs);
     connect(ui->actionOpen,&QAction::triggered, this, &MainWindow::openFile);
+    connect(ui->actionAbout,&QAction::triggered, this, &MainWindow::showAbout);
     mainModel = new RecipeTableModel();
     ui->tableView->setModel(mainModel);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -184,7 +185,7 @@ void MainWindow::write(QJsonObject &json) const
 bool MainWindow::saveFileJSON(bool saveAs) const
 {
     if(recipes.isEmpty()){
-        QMessageBox::information(nullptr, tr("No recipes to save"),
+        QMessageBox::warning(nullptr, tr("No recipes to save"),
                tr("There are no recipes to save. Add a recipe and try again."));
         return false;
     }
@@ -260,7 +261,7 @@ bool MainWindow::loadFile()
         QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
         read(loadDoc.object());
         if(recipes.isEmpty()){
-            QMessageBox::information(this, tr("No recipes in file"),
+            QMessageBox::warning(this, tr("No recipes in file"),
                    tr("The file you are attempting to open contains no recipes."));
             return false;
         }
@@ -273,4 +274,13 @@ void MainWindow::openFile()
         mainModel = new RecipeTableModel(recipes);
         ui->tableView->setModel(mainModel);
     }
+}
+void MainWindow::showAbout()
+{
+    QMessageBox messageBox;
+    messageBox.setWindowTitle("About");
+    messageBox.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    messageBox.setTextFormat(Qt::TextFormat(Qt::RichText));
+    messageBox.setText("<h2><strong>Recipe Planner</strong></h2><p>This is a small program with a GUI designed for the creation/modification of recipes and calculation of ingredients one needs to buy after creating a shopping list.</p><p>The program is one of the assignments for the EGUI course at Warsaw University of Technology.</p><p>Created in <em>Qt Creator 4.14.2</em> based on Qt 5.15.2 (MSVC 2019, 64 bit)</p><p>Developed and designed by Vladyslav Makartet</p>");
+    messageBox.exec();
 }

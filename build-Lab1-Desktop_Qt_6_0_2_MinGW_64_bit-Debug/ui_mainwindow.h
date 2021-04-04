@@ -144,7 +144,7 @@ public:
         actionCreate_shopping_list->setText(QCoreApplication::translate("MainWindow", "Create shopping list", nullptr));
         actionOpen->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
         actionSave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
-        actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
+        actionAbout->setText(QCoreApplication::translate("MainWindow", "About Recipe Planner...", nullptr));
         actionSave_As->setText(QCoreApplication::translate("MainWindow", "Save As", nullptr));
 #if QT_CONFIG(tooltip)
         addButton->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Add a new recipe</p></body></html>", nullptr));

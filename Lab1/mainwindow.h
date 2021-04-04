@@ -34,7 +34,6 @@ public:
     void setUpTableMain(const Recipe &recipe);
     void read(const QJsonObject &json);
     void write(QJsonObject &json) const;
-    //bool saveFileJSON(QString defaultFileName) const;
     bool saveFileJSON(bool) const;
     bool loadFile();
 
@@ -50,6 +49,7 @@ private slots:
     void saveFile();
     void saveFileAs();
     void openFile();
+    void showAbout();
 
 
 signals:
