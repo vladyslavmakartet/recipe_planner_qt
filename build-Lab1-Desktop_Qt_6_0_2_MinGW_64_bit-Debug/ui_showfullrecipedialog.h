@@ -117,7 +117,7 @@ public:
 
     void retranslateUi(QDialog *showFullRecipeDialog)
     {
-        showFullRecipeDialog->setWindowTitle(QCoreApplication::translate("showFullRecipeDialog", "Dialog", nullptr));
+        showFullRecipeDialog->setWindowTitle(QCoreApplication::translate("showFullRecipeDialog", "Info", nullptr));
         nameLabel->setText(QCoreApplication::translate("showFullRecipeDialog", "Name", nullptr));
         Name->setText(QString());
         descriptionLabel->setText(QCoreApplication::translate("showFullRecipeDialog", "Description", nullptr));

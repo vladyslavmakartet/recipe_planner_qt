@@ -34,6 +34,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="applyButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save changes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Apply</string>
          </property>
@@ -65,6 +68,9 @@
        </item>
        <item>
         <widget class="QLineEdit" name="RecipeNameLine">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter recipe name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="maxLength">
           <number>256</number>
          </property>
@@ -78,7 +84,11 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextEdit" name="RecipeTextEdit"/>
+        <widget class="QTextEdit" name="RecipeTextEdit">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLabel" name="ingredientsLabel">
@@ -98,6 +108,9 @@
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
           <widget class="QLineEdit" name="ingredientNameLine">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ingredient name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="maxLength">
             <number>256</number>
            </property>
@@ -116,6 +129,9 @@
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QLineEdit" name="QuantityLine">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ingredient quantity&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="maxLength">
             <number>256</number>
            </property>
@@ -134,6 +150,9 @@
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
           <widget class="QLineEdit" name="UnitLine">
+           <property name="toolTip">
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ingredient unit of measurement&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
            <property name="maxLength">
             <number>256</number>
            </property>
@@ -150,6 +169,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="addButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add ingredient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Add</string>
          </property>
@@ -157,6 +179,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="modifyButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modify selected ingredient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Modify</string>
          </property>
@@ -164,6 +189,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="deleteButton">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete selected ingredient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Delete</string>
          </property>

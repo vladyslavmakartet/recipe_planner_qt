@@ -207,15 +207,42 @@ public:
         EntryDialog->setWindowTitle(QCoreApplication::translate("EntryDialog", "Add", nullptr));
         okButton->setText(QCoreApplication::translate("EntryDialog", "OK", nullptr));
         cancelButton->setText(QCoreApplication::translate("EntryDialog", "Cancel", nullptr));
+#if QT_CONFIG(tooltip)
+        applyButton->setToolTip(QCoreApplication::translate("EntryDialog", "<html><head/><body><p>Save changes</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         applyButton->setText(QCoreApplication::translate("EntryDialog", "Apply", nullptr));
         RecipeNameLabel->setText(QCoreApplication::translate("EntryDialog", "Recipe name", nullptr));
+#if QT_CONFIG(tooltip)
+        RecipeNameLine->setToolTip(QCoreApplication::translate("EntryDialog", "<html><head/><body><p>Enter recipe name</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         recipeLabel->setText(QCoreApplication::translate("EntryDialog", "Recipe", nullptr));
+#if QT_CONFIG(tooltip)
+        RecipeTextEdit->setToolTip(QCoreApplication::translate("EntryDialog", "<html><head/><body><p>Enter text</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         ingredientsLabel->setText(QCoreApplication::translate("EntryDialog", "Ingredients", nullptr));
+#if QT_CONFIG(tooltip)
+        ingredientNameLine->setToolTip(QCoreApplication::translate("EntryDialog", "<html><head/><body><p>Ingredient name</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         nameLabel->setText(QCoreApplication::translate("EntryDialog", "Name", nullptr));
+#if QT_CONFIG(tooltip)
+        QuantityLine->setToolTip(QCoreApplication::translate("EntryDialog", "<html><head/><body><p>Ingredient quantity</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         quantityLabel->setText(QCoreApplication::translate("EntryDialog", "Quantity", nullptr));
+#if QT_CONFIG(tooltip)
+        UnitLine->setToolTip(QCoreApplication::translate("EntryDialog", "<html><head/><body><p>Ingredient unit of measurement</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         unitLabel->setText(QCoreApplication::translate("EntryDialog", "Unit", nullptr));
+#if QT_CONFIG(tooltip)
+        addButton->setToolTip(QCoreApplication::translate("EntryDialog", "<html><head/><body><p>Add ingredient</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         addButton->setText(QCoreApplication::translate("EntryDialog", "Add", nullptr));
+#if QT_CONFIG(tooltip)
+        modifyButton->setToolTip(QCoreApplication::translate("EntryDialog", "<html><head/><body><p>Modify selected ingredient</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         modifyButton->setText(QCoreApplication::translate("EntryDialog", "Modify", nullptr));
+#if QT_CONFIG(tooltip)
+        deleteButton->setToolTip(QCoreApplication::translate("EntryDialog", "<html><head/><body><p>Delete selected ingredient</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
         deleteButton->setText(QCoreApplication::translate("EntryDialog", "Delete", nullptr));
     } // retranslateUi
 

@@ -74,7 +74,7 @@ QVariant ingredientTableModel::data(const QModelIndex &index, int role) const
                 return ingredient.getIngredientName();
             case 1:
                 //return ingredient.getIngredientQuantity();
-                return QVariant::fromValue(ingredient.getIngredientQuantity());
+                return ingredient.getIngredientQuantity();
                                 //return QVariant::fromValue(recipes);
 
             case 2:

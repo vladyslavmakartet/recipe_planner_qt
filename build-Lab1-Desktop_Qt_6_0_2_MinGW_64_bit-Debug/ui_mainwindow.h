@@ -34,6 +34,7 @@ public:
     QAction *actionOpen;
     QAction *actionSave;
     QAction *actionAbout;
+    QAction *actionSave_As;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout_2;
     QHBoxLayout *horizontalLayout;
@@ -63,6 +64,8 @@ public:
         actionSave->setObjectName(QString::fromUtf8("actionSave"));
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
+        actionSave_As = new QAction(MainWindow);
+        actionSave_As->setObjectName(QString::fromUtf8("actionSave_As"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayout_2 = new QHBoxLayout(centralwidget);
@@ -120,7 +123,9 @@ public:
         menubar->addAction(menuCreate_shopping_list->menuAction());
         menubar->addAction(menuHelp->menuAction());
         menuCreate_shopping_list->addAction(actionOpen);
+        menuCreate_shopping_list->addSeparator();
         menuCreate_shopping_list->addAction(actionSave);
+        menuCreate_shopping_list->addAction(actionSave_As);
         menuCreate_shopping_list->addSeparator();
         menuCreate_shopping_list->addAction(actionCreate_shopping_list);
         menuCreate_shopping_list->addSeparator();
@@ -140,16 +145,17 @@ public:
         actionOpen->setText(QCoreApplication::translate("MainWindow", "Open", nullptr));
         actionSave->setText(QCoreApplication::translate("MainWindow", "Save", nullptr));
         actionAbout->setText(QCoreApplication::translate("MainWindow", "About", nullptr));
+        actionSave_As->setText(QCoreApplication::translate("MainWindow", "Save As", nullptr));
 #if QT_CONFIG(tooltip)
         addButton->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Add a new recipe</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         addButton->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));
 #if QT_CONFIG(tooltip)
-        editButton->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Edit current recipes</p></body></html>", nullptr));
+        editButton->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Edit selected recipe</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         editButton->setText(QCoreApplication::translate("MainWindow", "Edit", nullptr));
 #if QT_CONFIG(tooltip)
-        deleteButton->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Delete a recipe</p></body></html>", nullptr));
+        deleteButton->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Delete selected recipe</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         deleteButton->setText(QCoreApplication::translate("MainWindow", "Delete", nullptr));
         menuCreate_shopping_list->setTitle(QCoreApplication::translate("MainWindow", "File", nullptr));

@@ -112,7 +112,7 @@ void EntryDialog::on_modifyButton_clicked()
                 }
                 if(!ui->QuantityLine->text().isEmpty() && ui->QuantityLine->text().toFloat() != ingredientVector[selectedRow].getIngredientQuantity()){
                     selected = model->index(ui->IngredientsTableView->selectionModel()->currentIndex().row(),1, QModelIndex());
-                    model->setData(selected,ui->QuantityLine->text(),Qt::EditRole);
+                    model->setData(selected,ui->QuantityLine->text().toFloat(),Qt::EditRole);
                     ingredientVector[selectedRow].setIngredientQuantity(ui->QuantityLine->text().toFloat());
                 }
                 if(!ui->UnitLine->text().isEmpty() && ui->UnitLine->text() != ingredientVector[selectedRow].getIngredientUnit()){
@@ -156,7 +156,7 @@ void EntryDialog::on_addButton_clicked()
                 QModelIndex index = model->index(model->rowCount()-1,0, QModelIndex());
                 model->setData(index,ui->ingredientNameLine->text(),Qt::EditRole);
                 index = model->index(model->rowCount()-1,1, QModelIndex());
-                model->setData(index,ui->QuantityLine->text(),Qt::EditRole);
+                model->setData(index,ui->QuantityLine->text().toFloat(),Qt::EditRole);
                 index = model->index(model->rowCount()-1,2, QModelIndex());
                 model->setData(index,ui->UnitLine->text(),Qt::EditRole);
                 ui->IngredientsTableView->setModel(model);

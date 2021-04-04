@@ -40,7 +40,7 @@ signals:
     void FieldsFilled();
     void applyPressed(const Recipe &recipe);
     void dataEdited(const Recipe &recipe, const QModelIndex selected);
-
+    void tableChanged();
 
 private:
     Ui::EditInMainDialog *ui;

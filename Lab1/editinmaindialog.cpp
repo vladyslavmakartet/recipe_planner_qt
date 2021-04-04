@@ -52,6 +52,7 @@ EditInMainDialog::EditInMainDialog(const Recipe recipe, const QModelIndex select
     connect(ui->RecipeNameLineEdit, &QLineEdit::textChanged, this, &EditInMainDialog::allFieldsFilled);
     connect(ui->RecipeTextEditEdit, &QTextEdit::textChanged, this, &EditInMainDialog::allFieldsFilled);
     connect(this, &EditInMainDialog::FieldsFilled, this, &EditInMainDialog::allFieldsFilled);
+    //connect(this, &EditInMainDialog::tableChanged, this, &EditInMainDialog::allFieldsFilled);
 
     connect(ui->IngredientsTableViewEdit, &QAbstractItemView::clicked,this, &EditInMainDialog::enableButtons);
 
@@ -109,7 +110,7 @@ void EditInMainDialog::on_modifyButtonEdit_clicked()
                 }
                 if(!ui->QuantityLineEdit->text().isEmpty() && ui->QuantityLineEdit->text().toFloat() != ingredientVector[selectedRow].getIngredientQuantity()){
                     selected = model->index(ui->IngredientsTableViewEdit->selectionModel()->currentIndex().row(),1, QModelIndex());
-                    model->setData(selected,ui->QuantityLineEdit->text(),Qt::EditRole);
+                    model->setData(selected,ui->QuantityLineEdit->text().toFloat(),Qt::EditRole);
                     ingredientVector[selectedRow].setIngredientQuantity(ui->QuantityLineEdit->text().toFloat());
                 }
                 if(!ui->UnitLineEdit->text().isEmpty() && ui->UnitLineEdit->text() != ingredientVector[selectedRow].getIngredientUnit()){
@@ -122,6 +123,7 @@ void EditInMainDialog::on_modifyButtonEdit_clicked()
                         ui->modifyButtonEdit->setEnabled(false);
                         ui->deleteButtonEdit->setEnabled(false);
                         emit clearLineEdits();
+                        emit FieldsFilled();//tableChanged();
         }
     }
 
@@ -153,7 +155,7 @@ void EditInMainDialog::on_addButtonEdit_clicked()
                 QModelIndex index = model->index(model->rowCount()-1,0, QModelIndex());
                 model->setData(index,ui->ingredientNameLineEdit->text(),Qt::EditRole);
                 index = model->index(model->rowCount()-1,1, QModelIndex());
-                model->setData(index,ui->QuantityLineEdit->text(),Qt::EditRole);
+                model->setData(index,ui->QuantityLineEdit->text().toFloat(),Qt::EditRole);
                 index = model->index(model->rowCount()-1,2, QModelIndex());
                 model->setData(index,ui->UnitLineEdit->text(),Qt::EditRole);
                 ui->IngredientsTableViewEdit->setModel(model);
@@ -190,8 +192,9 @@ void EditInMainDialog::on_deleteButtonEdit_clicked()
          {
              ui->modifyButtonEdit->setEnabled(false);
              ui->deleteButtonEdit->setEnabled(false);
-             emit FieldsFilled();
+             //emit tableChanged();
          }
+         emit FieldsFilled();
       }
 }
 

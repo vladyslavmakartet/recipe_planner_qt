@@ -157,7 +157,7 @@ public:
 
     void retranslateUi(QDialog *MenuDialog)
     {
-        MenuDialog->setWindowTitle(QCoreApplication::translate("MenuDialog", "Dialog", nullptr));
+        MenuDialog->setWindowTitle(QCoreApplication::translate("MenuDialog", "Shopping List", nullptr));
         label_2->setText(QCoreApplication::translate("MenuDialog", "Added Recipes", nullptr));
         label_3->setText(QCoreApplication::translate("MenuDialog", "Ingredients to buy", nullptr));
         label->setText(QCoreApplication::translate("MenuDialog", "Recipe", nullptr));

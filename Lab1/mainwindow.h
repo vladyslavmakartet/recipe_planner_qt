@@ -17,6 +17,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QFile>
+#include <QFileDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,7 +34,7 @@ public:
     void setUpTableMain(const Recipe &recipe);
     void read(const QJsonObject &json);
     void write(QJsonObject &json) const;
-    bool saveFileJSON() const;
+    bool saveFileJSON(QString defaultFileName) const;
 
 private slots:
     void CreateShoppingList();
@@ -50,9 +51,9 @@ private slots:
     void on_editButton_clicked();
     void updateData(const Recipe &recipe, const QModelIndex);//QModelIndexList);
     void saveFile();
+    void saveFileAs();
 
 signals:
-    void save();
 
 private:
     Ui::MainWindow *ui;

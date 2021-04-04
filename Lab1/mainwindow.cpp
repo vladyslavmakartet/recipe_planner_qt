@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::exit);
     connect(ui->tableView, &QAbstractItemView::clicked,this, &MainWindow::enableButtonsMainWindow);
     connect(ui->actionSave,&QAction::triggered, this, &MainWindow::saveFile);
+    connect(ui->actionSave_As,&QAction::triggered, this, &MainWindow::saveFileAs);
 
     mainModel = new RecipeTableModel();
     ui->tableView->setModel(mainModel);
@@ -167,30 +168,56 @@ void MainWindow::updateData(const Recipe &recipe, QModelIndex selected)//QModelI
 
 void MainWindow::write(QJsonObject &json) const
 {
+    if(!recipes.isEmpty()){
     QJsonArray recipeArray;
     for (const Recipe &recipe : recipes) {
         QJsonObject recipeObject;
         recipe.write(recipeObject);
         recipeArray.append(recipeObject);
     }
-    json["recipe"] = recipeArray;
+    if (!recipeArray.isEmpty())
+        json["recipes"] = recipeArray;
 }
 
-bool MainWindow::saveFileJSON() const
+}
+
+bool MainWindow::saveFileJSON(QString FileName) const
 {
-    QFile saveFile("recipes.json");
+
+    QFile saveFile(FileName);
 
     if (!saveFile.open(QIODevice::WriteOnly)) {
-        qWarning("Couldn't open save file.");
+        qWarning("Unable to open file.");
         return false;
     }
     QJsonObject recipeObject;
     write(recipeObject);
-    saveFile.write(QJsonDocument(recipeObject).toJson());
-    return true;
+    if (!recipeObject.isEmpty()){
+        saveFile.write(QJsonDocument(recipeObject).toJson(QJsonDocument::Indented));
+        return true;
+    }
+    else return false;
 }
 
 void MainWindow::saveFile()
 {
-    this->saveFileJSON();
+//    QString fileName = QFileDialog::getSaveFileName(this,
+//        tr("Save Recipes"), "",
+//        tr("Recipes (*.json);;Json (*.json)"));
+//    if (!fileName.isEmpty())
+//        this->saveFileJSON(fileName);
+//    else
+        this->saveFileJSON("recipes.json");
 }
+void MainWindow::saveFileAs()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,
+        tr("Save Recipes"), "",
+        tr("Recipes (*.json);;Json (*.json)"));
+    if (fileName.isEmpty())
+        return;
+    else {
+        this->saveFileJSON(fileName);
+    }
+}
+
