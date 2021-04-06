@@ -149,7 +149,7 @@ void EditInMainDialog::on_addButtonEdit_clicked()
          }
 
 
-        if (!ingredientVector.contains(ingredient)){
+        //if (!ingredientVector.contains(ingredient)){
             if(!sameItem){
                 model->insertRow(model->rowCount());
                 QModelIndex index = model->index(model->rowCount()-1,0, QModelIndex());
@@ -166,7 +166,7 @@ void EditInMainDialog::on_addButtonEdit_clicked()
                 emit clearLineEdits();
                 emit FieldsFilled();
             }
-        }
+        //}
      }
 
 

@@ -54,7 +54,10 @@ public:
     void setIngredientUnit(const QString);
     bool checkIfEqual(QString name, float quantity, QString unit);
     bool operator==(const Ingredient &rhs)const;
-    //bool operator==(const Ingredient &lhs, const Ingredient &rhs);
+
+    //bool operator==(const QString)const;
+
+    //friend bool operator==(const QVector<Ingredient> &lhs, const QVector<Ingredient> &rhs);
 
     void read(const QJsonObject &json);
     void write(QJsonObject &json) const;

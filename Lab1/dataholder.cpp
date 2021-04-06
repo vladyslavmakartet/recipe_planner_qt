@@ -100,10 +100,30 @@ bool Ingredient::checkIfEqual(QString name, float quantity, QString unit)
 }
 bool Ingredient::operator==(const Ingredient &rhs) const
 {
-    if(this->name == rhs.name && this->quantity == rhs.quantity && this->unit == rhs.unit)
+    if(this->name == rhs.name &&  this->unit == rhs.unit)//&& this->quantity == rhs.quantity && this->unit == rhs.unit)
         return true;
     return false;
 }
+//bool operator==(const QVector<Ingredient> &lhs, const QVector<Ingredient> &rhs)
+//{
+//    for(int i=0;i<lhs.size();i++)
+//    {
+//        for(int j=0;j<rhs.size();j++)
+//        {
+//            if(lhs[i].getIngredientName()==rhs[j].getIngredientName()
+//                    &&lhs[i].getIngredientUnit()==rhs[j].getIngredientUnit())
+//                return true;
+//        }
+//    }
+//    return false;
+//}
+
+//bool Ingredient::operator==(const QString name) const
+//{
+//    if(this->getIngredientName() == name)
+//        return true;
+//    return false;
+//}
 //bool operator==(const Ingredient &lhs, const Ingredient &rhs)
 //{
 //    if (lhs.getIngredientName() == rhs.getIngredientName()

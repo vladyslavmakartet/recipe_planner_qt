@@ -193,33 +193,60 @@ void MenuDialog::updateIngredientsTable()
 {
    // if(decision)
     //{
-        bool sameElements = false;
-        for(; currentCounter < newCounter; currentCounter++)
-        {
-            if(ingredientsVector.isEmpty())
-                ingredientsVector.append(recipesToCook[currentCounter].getRecipeIngredients());
+        //bool sameElements = false;
+//        for(; currentCounter < newCounter; currentCounter++)
+//        {
+//            if(ingredientsVector.isEmpty())
+//                ingredientsVector.append(recipesToCook[currentCounter].getRecipeIngredients());
+//            else
+//            {
+//                for(int i=0;i<ingredientsVector.size();i++)
+//                {
+//                    for(int j=0;j<recipesToCook[currentCounter].getRecipeIngredients().size();j++)
+//                    {
+//                        if(ingredientsVector[i].getIngredientName() == recipesToCook[currentCounter].getRecipeIngredients()[j].getIngredientName()
+//                                && ingredientsVector[i].getIngredientUnit() == recipesToCook[currentCounter].getRecipeIngredients()[j].getIngredientUnit())
+//                        {
+//                            ingredientsVector[i].setIngredientQuantity(ingredientsVector[i].getIngredientQuantity() + recipesToCook[currentCounter].getRecipeIngredients()[j].getIngredientQuantity());
+//                            //sameElements=true;
+//                        }
+//                        else
+//                        {
+//                            //sameElements=false;
+//                            //Ingredient newIng = recipesToCook[currentCounter].getRecipeIngredients()[j];
+
+//                            if(!ingredientsVector.contains(recipesToCook[currentCounter].getRecipeIngredients()[j]))
+//                            {
+//                                ingredientsVector.append(recipesToCook[currentCounter].getRecipeIngredients()[j]);
+//                            }
+//                        }
+//                    }
+//                }
+
+//            }
+
+//        }
+    if(ingredientsVector.isEmpty())
+    {
+        ingredientsVector.append(recipesToCook[currentCounter].getRecipeIngredients());
+    }
+    else
+    {
+        for(int j=0;j<recipesToCook[currentCounter].getRecipeIngredients().size();j++){
+            if(ingredientsVector.contains(recipesToCook[currentCounter].getRecipeIngredients()[j]))
+            {
+                int index= ingredientsVector.indexOf(recipesToCook[currentCounter].getRecipeIngredients()[j]);
+                if(index!=(-1))
+                    ingredientsVector[index].setIngredientQuantity(ingredientsVector[index].getIngredientQuantity() + recipesToCook[currentCounter].getRecipeIngredients()[j].getIngredientQuantity());
+            }
             else
             {
-                for(int i=0;i<ingredientsVector.size();i++)
-                {
-                    for(int j=0;j<recipesToCook[currentCounter].getRecipeIngredients().size();j++)
-                    {
-                        if(ingredientsVector[i].getIngredientName() == recipesToCook[currentCounter].getRecipeIngredients()[j].getIngredientName()
-                                && ingredientsVector[i].getIngredientUnit() == recipesToCook[currentCounter].getRecipeIngredients()[j].getIngredientUnit())
-                        {
-                            ingredientsVector[i].setIngredientQuantity(ingredientsVector[i].getIngredientQuantity() + recipesToCook[currentCounter].getRecipeIngredients()[j].getIngredientQuantity());
-                            sameElements=true;
-                        }
-                    }
-                }
-                    if(!sameElements)
-                    {
-                        ingredientsVector.append(recipesToCook[currentCounter].getRecipeIngredients());
-                    }
+                ingredientsVector.append(recipesToCook[currentCounter].getRecipeIngredients()[j]);
             }
-
         }
-   // }
+    }
+    currentCounter++;
+
 
     std::sort(ingredientsVector.begin(), ingredientsVector.end());
 
