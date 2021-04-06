@@ -5,14 +5,12 @@ EntryDialog::EntryDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EntryDialog)
 {
-    //model = new QStringListModel();
-    //model = new RecipeTableModel();
+
     ui->setupUi(this);
     model = new ingredientTableModel();
 
     ui->IngredientsTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    //ui->IngredientsTableView->setStyleSheet("QHeaderView::section { background-color:gray }");
-    //ui->IngredientsTableView->setStyleSheet("QHeaderView::section { gridline-color: blue }");
+
     ui->IngredientsTableView->setCornerButtonEnabled(false);
     ui->IngredientsTableView->setStyleSheet("QHeaderView::section{"
             "border-top:0px solid #D8D8D8;"
@@ -30,13 +28,13 @@ EntryDialog::EntryDialog(QWidget *parent) :
             "background-color:white;"
         "}");
     ui->IngredientsTableView->setModel(model);
-    //ui->buttonBox->button//(QDialogButtonBox::Apply, QDialogButtonBox::AcceptRole);
+
 
     ui->IngredientsTableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //To disable editing
     ui->addButton->setEnabled(false);
     ui->modifyButton->setEnabled(false);
     ui->deleteButton->setEnabled(false);
-    //ui->buttonBox->button(QDialogButtonBox::Apply)->setEnabled(false);
+
     ui->applyButton->setEnabled(false);
     ui->IngredientsTableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->IngredientsTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -49,24 +47,13 @@ EntryDialog::EntryDialog(QWidget *parent) :
     connect(this, &EntryDialog::FieldsFilled, this, &EntryDialog::allFieldsFilled);
 
     connect(ui->IngredientsTableView, &QAbstractItemView::clicked,this, &EntryDialog::enableButtons);
-    //connect(ui->modifyButton, &QPushButton::clicked, this, &EntryDialog::on_modifyButton_clicked);
 
 
     connect(this, &EntryDialog::clearLineEdits,ui->ingredientNameLine, &QLineEdit::clear);
     connect(this, &EntryDialog::clearLineEdits,ui->QuantityLine, &QLineEdit::clear);
     connect(this, &EntryDialog::clearLineEdits,ui->UnitLine, &QLineEdit::clear);
 
-
-    //QPushButton* applyButton = ui->buttonBox->button(QDialogButtonBox::Apply);
-
-
-    //connect(applyButton, SIGNAL(clicked(QAbstractButton*Apply)),this,SLOT(on_buttonBox_applied()));
-
-
 }
-
-
-
 
 EntryDialog::~EntryDialog()
 {
@@ -91,14 +78,12 @@ void EntryDialog::allFieldsFilled()
     && !ui->RecipeNameLine->text().isEmpty()
     && !ui->RecipeTextEdit->document()->isEmpty();
 
-    //ui->buttonBox->button(QDialogButtonBox::Apply)->setEnabled(ok);
     ui->applyButton->setEnabled(ok);
 }
 
 
 void EntryDialog::on_modifyButton_clicked()
 {
-    //QModelIndexList selected = ui->IngredientsTableView->selectionModel()->selectedIndexes();
     QModelIndex selected = model->index(ui->IngredientsTableView->selectionModel()->currentIndex().row(),0, QModelIndex());
     int selectedRow = ui->IngredientsTableView->selectionModel()->currentIndex().row();
     if (selected.isValid()){
@@ -111,9 +96,12 @@ void EntryDialog::on_modifyButton_clicked()
                     ingredientVector[selectedRow].setIngredientName(ui->ingredientNameLine->text());
                 }
                 if(!ui->QuantityLine->text().isEmpty() && ui->QuantityLine->text().toFloat() != ingredientVector[selectedRow].getIngredientQuantity()){
-                    selected = model->index(ui->IngredientsTableView->selectionModel()->currentIndex().row(),1, QModelIndex());
-                    model->setData(selected,ui->QuantityLine->text().toFloat(),Qt::EditRole);
-                    ingredientVector[selectedRow].setIngredientQuantity(ui->QuantityLine->text().toFloat());
+                    if(ui->QuantityLine->text().toFloat()!=0)
+                    {
+                        selected = model->index(ui->IngredientsTableView->selectionModel()->currentIndex().row(),1, QModelIndex());
+                        model->setData(selected,ui->QuantityLine->text().toFloat(),Qt::EditRole);
+                        ingredientVector[selectedRow].setIngredientQuantity(ui->QuantityLine->text().toFloat());
+                    }
                 }
                 if(!ui->UnitLine->text().isEmpty() && ui->UnitLine->text() != ingredientVector[selectedRow].getIngredientUnit()){
                     selected = model->index(ui->IngredientsTableView->selectionModel()->currentIndex().row(),2, QModelIndex());
@@ -135,41 +123,39 @@ void EntryDialog::on_addButton_clicked()
 {
 
     if(!(ui->ingredientNameLine->text().isEmpty() || ui->QuantityLine->text().isEmpty() || ui->UnitLine->text().isEmpty())){
-        //ingredient = new Ingredient(ui->ingredientNameLine->text(),ui->QuantityLine->text().toFloat(), ui->UnitLine->text());
-        ingredient.setIngredientName(ui->ingredientNameLine->text());
-        ingredient.setIngredientQuantity(ui->QuantityLine->text().toFloat());
-        ingredient.setIngredientUnit(ui->UnitLine->text());
-        bool sameItem = false;
+        if(ui->QuantityLine->text().toFloat()!=0){
+            ingredient.setIngredientName(ui->ingredientNameLine->text());
+            ingredient.setIngredientQuantity(ui->QuantityLine->text().toFloat());
+            ingredient.setIngredientUnit(ui->UnitLine->text());
+            bool sameItem = false;
 
-        if(!ingredientVector.isEmpty()){
-            for(int i=0; i<ingredientVector.size(); i++){
-                if(ingredientVector[i].getIngredientName() == ingredient.getIngredientName()
-                        && ingredientVector[i].getIngredientUnit() == ingredient.getIngredientUnit())
-                        sameItem = true;
-            }
+            if(!ingredientVector.isEmpty()){
+                for(int i=0; i<ingredientVector.size(); i++){
+                    if(ingredientVector[i].getIngredientName() == ingredient.getIngredientName()
+                            && ingredientVector[i].getIngredientUnit() == ingredient.getIngredientUnit())
+                            sameItem = true;
+                }
+             }
+
+
+                if(!sameItem){
+                    model->insertRow(model->rowCount());
+                    QModelIndex index = model->index(model->rowCount()-1,0, QModelIndex());
+                    model->setData(index,ui->ingredientNameLine->text(),Qt::EditRole);
+                    index = model->index(model->rowCount()-1,1, QModelIndex());
+                    model->setData(index,ui->QuantityLine->text().toFloat(),Qt::EditRole);
+                    index = model->index(model->rowCount()-1,2, QModelIndex());
+                    model->setData(index,ui->UnitLine->text(),Qt::EditRole);
+                    ui->IngredientsTableView->setModel(model);
+                    ui->modifyButton->setEnabled(false);
+                    ui->deleteButton->setEnabled(false);
+                    ingredientVector.append(ingredient);
+                    ui->IngredientsTableView->resizeRowsToContents();
+                    emit clearLineEdits();
+                    emit FieldsFilled();
+                }
          }
-
-
-        //if (!ingredientVector.contains(ingredient)){
-            if(!sameItem){
-                model->insertRow(model->rowCount());
-                QModelIndex index = model->index(model->rowCount()-1,0, QModelIndex());
-                model->setData(index,ui->ingredientNameLine->text(),Qt::EditRole);
-                index = model->index(model->rowCount()-1,1, QModelIndex());
-                model->setData(index,ui->QuantityLine->text().toFloat(),Qt::EditRole);
-                index = model->index(model->rowCount()-1,2, QModelIndex());
-                model->setData(index,ui->UnitLine->text(),Qt::EditRole);
-                ui->IngredientsTableView->setModel(model);
-                ui->modifyButton->setEnabled(false);
-                ui->deleteButton->setEnabled(false);
-                ingredientVector.append(ingredient);
-                ui->IngredientsTableView->resizeRowsToContents();
-                emit clearLineEdits();
-                emit FieldsFilled();
-            }
-       // }
-     }
-
+    }
 
 }
 

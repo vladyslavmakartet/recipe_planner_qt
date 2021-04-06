@@ -27,10 +27,6 @@ QVector<Ingredient> Recipe::getRecipeIngredients() const
 {
     return this->ingredients;
 }
-//void Recipe::setRecipeIngredient(const Ingredient data)
-//{
-//    this->ingredients.append(data);
-//}
 bool Recipe::operator==(const Recipe &rhs) const
 {
     if(this->recipeName == rhs.recipeName
@@ -39,13 +35,6 @@ bool Recipe::operator==(const Recipe &rhs) const
         return true;
     return false;
 }
-
-//bool operator==(const Recipe &rhs)const;
-//bool operator==(const QVector<Ingredient> &rhs)const;
-//bool Recipe::operator==(const QVector<Ingredient> &rhs)const
-//{
-//   return this->ingredients == rhs;
-//}
 
 void Recipe::setRecipeIngredients(const QVector<Ingredient> data)
 {
@@ -68,10 +57,6 @@ float Ingredient::getIngredientQuantity() const
 {
     return this->quantity;
 }
-//float Ingredient::getIngredientQuantity() const
-//{
-//    return this->quantity;
-//}
 QString Ingredient::getIngredientUnit() const
 {
     return this->unit;
@@ -84,10 +69,7 @@ void Ingredient::setIngredientQuantity(const float newQuantity)
 {
     this->quantity = newQuantity;
 }
-//void Ingredient::setIngredientQuantity(const float newQuantity)
-//{
-//    this->quantity = newQuantity;
-//}
+
 void Ingredient::setIngredientUnit(const QString newUnit)
 {
     this->unit = newUnit;
@@ -100,38 +82,10 @@ bool Ingredient::checkIfEqual(QString name, float quantity, QString unit)
 }
 bool Ingredient::operator==(const Ingredient &rhs) const
 {
-    if(this->name == rhs.name &&  this->unit == rhs.unit)//&& this->quantity == rhs.quantity && this->unit == rhs.unit)
+    if(this->name == rhs.name &&  this->unit == rhs.unit)
         return true;
     return false;
 }
-//bool operator==(const QVector<Ingredient> &lhs, const QVector<Ingredient> &rhs)
-//{
-//    for(int i=0;i<lhs.size();i++)
-//    {
-//        for(int j=0;j<rhs.size();j++)
-//        {
-//            if(lhs[i].getIngredientName()==rhs[j].getIngredientName()
-//                    &&lhs[i].getIngredientUnit()==rhs[j].getIngredientUnit())
-//                return true;
-//        }
-//    }
-//    return false;
-//}
-
-//bool Ingredient::operator==(const QString name) const
-//{
-//    if(this->getIngredientName() == name)
-//        return true;
-//    return false;
-//}
-//bool operator==(const Ingredient &lhs, const Ingredient &rhs)
-//{
-//    if (lhs.getIngredientName() == rhs.getIngredientName()
-//            || lhs.getIngredientQuantity() == rhs.getIngredientQuantity()
-//            || lhs.getIngredientUnit() == rhs.getIngredientUnit())
-//        return true;
-//    return false;
-//}
 void Recipe::write(QJsonObject &json) const
 {
 
@@ -148,7 +102,6 @@ void Recipe::write(QJsonObject &json) const
 }
 void Ingredient::write(QJsonObject &json) const
 {
-    //json[name] = QString::number(quantity) + unit;
     json["name"] = name;
     json["quantity"] = QString::number(quantity);
     json["unit"] = unit;

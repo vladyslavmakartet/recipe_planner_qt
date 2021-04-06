@@ -4,29 +4,6 @@
 #include <QAbstractTableModel>
 #include "dataholder.h"
 #include <QMultiMap>
-//struct Recipe
-//{
-//    QString recipeName;
-//    QString recipeDescription;
-//    //QMap<QString,QPair<qfloat16,QString>> ingredient;
-//    //QMap<QString,QString> ingredient;
-//    QMap<QString,QVariant> ingredient;
-//    bool operator==(const Recipe &other) const
-//    {
-//        return  recipeName == other.recipeName && recipeDescription == other.recipeDescription;
-//    }
-//};
-////typedef QMap<QString,QPair<qfloat16,QString>> ingredient;
-////Q_DECLARE_METATYPE(ingredient);
-
-//inline  QDataStream &operator<<(QDataStream &stream, const Recipe &recipe)
-//{
-//    return stream << recipe.recipeName << recipe.recipeDescription;
-//}
-//inline  QDataStream &operator>>(QDataStream &stream, Recipe &recipe)
-//{
-//    return stream >> recipe.recipeName >> recipe.recipeDescription;
-//}
 
 class RecipeTableModel : public QAbstractTableModel
 {

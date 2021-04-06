@@ -25,7 +25,7 @@ public:
     explicit MenuDialog(const QVector<Recipe> recipes,QWidget *parent = nullptr);
     ~MenuDialog();
 private slots:
-    void availableRecipeSelected();//QModelIndex);
+    void availableRecipeSelected();
     void toBeCookedRecipeSelected();
     void on_cookPushButton_clicked();
     void on_removePushButton_clicked();

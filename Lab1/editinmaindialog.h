@@ -20,7 +20,6 @@ class EditInMainDialog : public QDialog
     Q_OBJECT
 
 public:
-    //explicit EditInMainDialog(const Recipe,const QModelIndexList,QWidget *parent = nullptr);
     explicit EditInMainDialog(const Recipe,const QModelIndex,QWidget *parent = nullptr);
     ~EditInMainDialog();
 
@@ -34,7 +33,6 @@ private slots:
     void on_okButtonEdit_clicked();
     void on_applyButtonEdit_clicked();
     void on_cancelButtonEdit_clicked();
-    //void on_applyButton_clicked_data_edited();
 signals:
     void clearLineEdits();
     void FieldsFilled();

@@ -20,8 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView->setWordWrap(true);
     ui->editButton->setEnabled(false);
     ui->deleteButton->setEnabled(false);
-    //ui->IngredientsTableView->setStyleSheet("QHeaderView::section { background-color:gray }");
-    //ui->IngredientsTableView->setStyleSheet("QHeaderView::section { gridline-color: blue }");
     ui->tableView->setCornerButtonEnabled(false);
     ui->tableView->setStyleSheet("QHeaderView::section{"
             "border-top:0px solid #D8D8D8;"
@@ -39,10 +37,6 @@ MainWindow::MainWindow(QWidget *parent)
             "background-color:white;"
         "}");
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //To disable editing
-
-
-
-//#endif
 }
 
 MainWindow::~MainWindow()
@@ -52,8 +46,6 @@ MainWindow::~MainWindow()
 void MainWindow::CreateShoppingList()
 {
    MenuDialog *dialog = new MenuDialog(recipes,this);
-   //dialog->setWindowModality(Qt::WindowModal);
-   //dialog->show();
    dialog->open();
 }
 void MainWindow::exit()
@@ -67,16 +59,8 @@ void MainWindow::exit()
 void MainWindow::on_addButton_clicked()
 {
         EntryDialog *dialog = new EntryDialog(this);
-        //dialog->setWindowModality(Qt::WindowModal);
-        //dialog->show();
-        // or
-        //dialog->setModal(true);
-        //dialog->setAttribute(Qt::WA_DeleteOnClose);
-        //dialog->exec();
         dialog->open();
-        //connect(dialog, &EntryDialog::applyPressed,this,&MainWindow::setRecipe);
         connect(dialog, &EntryDialog::applyPressed,this,&MainWindow::setUpTableMain);
-        //connect(ui->tableView, &QAbstractItemView::clicked,this, &EntryDialog::enableButtons);
 
 }
 
@@ -90,14 +74,6 @@ void MainWindow::setUpTableMain(const Recipe &recipe)
         mainModel->setData(index,recipes[index.row()].getRecipeName(),Qt::EditRole);
         ui->tableView->setModel(mainModel);
         ui->tableView->resizeRowsToContents();
-        //mainModel->index(mainModel->rowCount())
-
-        //index = mainModel->index(mainModel->rowCount()-1, 1, QModelIndex());
-        //mainModel->setData(index,recipes[index.row()].getRecipeDescription(),Qt::EditRole);
-        //index = mainModel->index(mainModel->rowCount()-1, 2, QModelIndex());
-        //mainModel->setData(index,QVariant::fromValue(recipes[index.row()].getRecipeIngredients()),Qt::EditRole);
-        //ui->tableView->setModel(mainModel);
-    //}
     }
 }
 
@@ -112,27 +88,12 @@ void MainWindow::enableButtonsMainWindow()
 
 }
 
-
-
-
-
-
-
-
-
-
-
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
     showFullRecipeDialog *dialogFullRecipe = new showFullRecipeDialog(recipes[index.row()],this);
-    dialogFullRecipe->show(); //CHECK IF ITEM WAS DELETED!!! POTENTIAL CRASH!!!
+    dialogFullRecipe->show();
 }
 
-//void MainWindow::on_tableView_clicked()
-//{
-//            ui->editButton->setEnabled(true);
-//            ui->deleteButton->setEnabled(true);
-//}
 
 void MainWindow::on_deleteButton_clicked()
 {
@@ -152,7 +113,6 @@ void MainWindow::on_deleteButton_clicked()
 
 void MainWindow::on_editButton_clicked()
 {
-    //QModelIndexList selected = ui->tableView->selectionModel()->selectedIndexes();
     QModelIndex selected = mainModel->index(ui->tableView->selectionModel()->currentIndex().row(),0, QModelIndex());
 
     EditInMainDialog *editDataMainDialog = new EditInMainDialog(recipes[selected.row()],selected,this);
@@ -160,7 +120,7 @@ void MainWindow::on_editButton_clicked()
 
     connect(editDataMainDialog, &EditInMainDialog::dataEdited,this,&MainWindow::updateData);
 }
-void MainWindow::updateData(const Recipe &recipe, QModelIndex selected)//QModelIndexList selected)
+void MainWindow::updateData(const Recipe &recipe, QModelIndex selected)
 {
     recipes[selected.row()]=recipe;
     mainModel->setData(selected,recipes[selected.row()].getRecipeName(),Qt::EditRole);
@@ -216,19 +176,11 @@ bool MainWindow::saveFileJSON(bool saveAs) const
 
 void MainWindow::saveFile()
 {
-        //this->saveFileJSON("recipes.json");
     this->saveFileJSON(false);
 }
 void MainWindow::saveFileAs()
 {
-//    QString fileName = QFileDialog::getSaveFileName(this,
-//        tr("Save Recipes"), "",
-//        tr("Recipes (*.json);;Json (*.json)"));
-//    if (fileName.isEmpty())
-//        return;
-//    else {
        this->saveFileJSON(true);
-
 }
 
 void MainWindow::read(const QJsonObject &json)
@@ -260,12 +212,13 @@ bool MainWindow::loadFile()
         }
         QByteArray saveData = loadFile.readAll();
         QJsonDocument loadDoc(QJsonDocument::fromJson(saveData));
-        read(loadDoc.object());
-        if(recipes.isEmpty()){
+
+        if(loadDoc.isEmpty()){
             QMessageBox::warning(this, tr("No recipes in file"),
                    tr("The file you are attempting to open contains no recipes."));
             return false;
         }
+        read(loadDoc.object());
         return true;
     }
 }
@@ -282,7 +235,8 @@ void MainWindow::showAbout()
     messageBox.setWindowTitle("About");
     messageBox.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
     messageBox.setTextFormat(Qt::TextFormat(Qt::RichText));
-    messageBox.setIconPixmap(QPixmap(":/images/info.png"));
+    messageBox.setIconPixmap(QPixmap(":/images/images/info1.png"));
+    messageBox.setWindowIcon(QIcon(":/images/images/food2.png"));
     messageBox.setText("<h2><strong>Recipe Planner</strong></h2><p>This is a small program with a GUI designed for the creation/modification of recipes and calculation of ingredients one needs to buy after creating a shopping list.</p><p>The program is one of the assignments for the EGUI course at Warsaw University of Technology.</p><p>Created in <em>Qt Creator 4.14.2</em> based on Qt 5.15.2 (MSVC 2019, 64 bit)</p><p>Developed and designed by Vladyslav Makartet</p>");
     messageBox.exec();
 }

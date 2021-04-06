@@ -12,8 +12,6 @@ ingredientTableModel::ingredientTableModel(const QVector<Ingredient> &ingredient
 
 QVariant ingredientTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    // FIXME: Implement me!
-    // FIXME: Implement me!
     if (role != Qt::DisplayRole)
         return QVariant();
 
@@ -39,7 +37,7 @@ QVariant ingredientTableModel::headerData(int section, Qt::Orientation orientati
 bool ingredientTableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
 {
     if (value != headerData(section, orientation, role)) {
-        // FIXME: Implement me!
+
         emit headerDataChanged(orientation, section, section);
         return true;
     }
@@ -50,14 +48,14 @@ bool ingredientTableModel::setHeaderData(int section, Qt::Orientation orientatio
 int ingredientTableModel::rowCount(const QModelIndex &parent) const
 {
     return parent.isValid() ? 0 : ingredients.size();;
-    // FIXME: Implement me!
+
 }
 
 int ingredientTableModel::columnCount(const QModelIndex &parent) const
 {
     return parent.isValid() ? 0 : 3;
 
-    // FIXME: Implement me!
+
 }
 
 QVariant ingredientTableModel::data(const QModelIndex &index, int role) const
@@ -73,9 +71,8 @@ QVariant ingredientTableModel::data(const QModelIndex &index, int role) const
             case 0:
                 return ingredient.getIngredientName();
             case 1:
-                //return ingredient.getIngredientQuantity();
                 return ingredient.getIngredientQuantity();
-                                //return QVariant::fromValue(recipes);
+
 
             case 2:
                 return ingredient.getIngredientUnit();
@@ -131,19 +128,12 @@ bool ingredientTableModel::insertRows(int position, int rows, const QModelIndex 
 {
     Q_UNUSED(index);
     beginInsertRows(QModelIndex(), position, position + rows - 1);
-    // FIXME: Implement me!
     for (int row = 0; row < rows; ++row)
         ingredients.insert(position, {QString(), float(), QString()});
     endInsertRows();
     return true;
 }
 
-//bool ingredientTableModel::insertColumns(int column, int count, const QModelIndex &parent)
-//{
-//    beginInsertColumns(parent, column, column + count - 1);
-//    // FIXME: Implement me!
-//    endInsertColumns();
-//}
 
 bool ingredientTableModel::removeRows(int position, int rows, const QModelIndex &parent)
 {
@@ -151,14 +141,7 @@ bool ingredientTableModel::removeRows(int position, int rows, const QModelIndex 
     beginRemoveRows(QModelIndex(), position, position + rows - 1);
     for (int row = 0; row < rows; ++row)
         ingredients.removeAt(position);
-    // FIXME: Implement me!
     endRemoveRows();
     return true;
 }
 
-//bool ingredientTableModel::removeColumns(int column, int count, const QModelIndex &parent)
-//{
-//    beginRemoveColumns(parent, column, column + count - 1);
-//    // FIXME: Implement me!
-//    endRemoveColumns();
-//}

@@ -13,6 +13,11 @@
   <property name="windowTitle">
    <string>Recipe Planner</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normalon>:/images/images/food2.png</normalon>
+   </iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>

@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtGui/QAction>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -54,6 +55,9 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(800, 600);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/images/images/food2.png"), QSize(), QIcon::Normal, QIcon::On);
+        MainWindow->setWindowIcon(icon);
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
         actionCreate_shopping_list = new QAction(MainWindow);

@@ -50,20 +50,6 @@ showFullRecipeDialog::showFullRecipeDialog(const Recipe data,QWidget *parent) :
 
     }
     ui->ingredientsTableView->setModel(FullRecipeModel);
-    //ui->ingredientsTableView->resizeRowsToContents();
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

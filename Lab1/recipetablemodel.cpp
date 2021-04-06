@@ -14,20 +14,13 @@ RecipeTableModel::RecipeTableModel(const QVector<Recipe> &recipes, QObject *pare
 
 QVariant RecipeTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    // FIXME: Implement me!
+
     if (role != Qt::DisplayRole)
         return QVariant();
 
     if (section == 0 && orientation == Qt::Horizontal) {
-//        switch (section) {
-//            case 0:
                 return tr("Recipe");
-//            case 1:
-//                return tr("Description");
-//            case 2:
-//                return tr("Ingredients");
-//            default:
-//                break;
+
         }
 
     if(orientation == Qt::Vertical)
@@ -40,7 +33,7 @@ QVariant RecipeTableModel::headerData(int section, Qt::Orientation orientation, 
 bool RecipeTableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
 {
     if (value != headerData(section, orientation, role)) {
-        // FIXME: Implement me!
+
         emit headerDataChanged(orientation, section, section);
         return true;
     }
@@ -51,7 +44,7 @@ bool RecipeTableModel::setHeaderData(int section, Qt::Orientation orientation, c
 int RecipeTableModel::rowCount(const QModelIndex &parent) const
 {
     return parent.isValid() ? 0 : recipes.size();;
-    // FIXME: Implement me!
+
 }
 
 int RecipeTableModel::columnCount(const QModelIndex &parent) const
@@ -68,25 +61,7 @@ QVariant RecipeTableModel::data(const QModelIndex &index, int role) const
     if (role == Qt::DisplayRole){
         const auto &recipe = recipes.at(index.row());
 
-//        switch (index.column()) {
-//            case 0:
-//                return recipe.getRecipeName();
-//            case 1:
-//                return recipe.getRecipeDescription();
-//            case 2:
-//            //QVariant var = QVariant::fromValue(recipes);
-//                //return QVariant::fromValue(recipes);
 
-//            //recipe.setRecipeIngredients(value.value<QVector<Ingredient>>());
-
-//            //return QVariant::fromValue(recipe.getRecipeIngredients());
-//                //return QVariant::fromValue(recipe.getRecipeIngredients());
-//                return QVariant::fromValue(recipe.getRecipeIngredients().at(index.row()));
-//            default:
-//                break;
-//        //else if (index.column() == 2)   // FIXME: Implement me!
-//        //    return recipe.getRecipeIngredient();
-//        }
         if (index.column() == 0)
             return recipe.getRecipeName();
     }
@@ -100,23 +75,7 @@ bool RecipeTableModel::setData(const QModelIndex &index, const QVariant &value, 
         const int row = index.row();
         auto recipe = recipes.at(row);
 
-//        switch (index.column()) {
-//            case 0:
-//                recipe.setRecipeName(value.toString());
-//                break;
-//            case 1:
-//                recipe.setRecipeDescription(value.toString());
-//                break;/// to add ingredients
-//            case 2:
-//                //recipe.setRecipeIngredients(QVariant::fromValue(value));
-//                //recipe.setRecipeIngredients(value.value<Ingredient>());
-//                //QVector<Ingredient> v = value.value<QVector<Ingredient>>();
-//                recipe.setRecipeIngredients(value.value<QVector<Ingredient>>());
-//                //recipe.setRecipeIngredients(var.setValue<QVector<Ingredient>>(value));
-//                break;
-//            default:
-//                return false;
-//        }
+
         if(index.column() == 0)
             recipe.setRecipeName(value.toString());
         recipes.replace(row, recipe);
@@ -137,16 +96,7 @@ Qt::ItemFlags RecipeTableModel::flags(const QModelIndex &index) const
     return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
 }
 
-//bool RecipeTableModel::insertRows(int row, int count, const QModelIndex &parent)
-//{
-//    beginInsertRows(parent, row, row + count - 1);
-//    // FIXME: Implement me!
-//    for (int row_ = 0; row_ < count; ++row_)
 
-//        //recipes.insert(row,{ QString(), QString() });
-//    endInsertRows();
-//    return true;
-//}
 
 const QVector<Recipe> &RecipeTableModel::getRecipes() const
 {
@@ -157,22 +107,13 @@ bool RecipeTableModel::insertRows(int position, int rows, const QModelIndex &ind
 {
     Q_UNUSED(index);
     beginInsertRows(QModelIndex(), position, position + rows - 1);
-    // FIXME: Implement me!
     for (int row = 0; row < rows; ++row)
         recipes.insert(position, {QString(), QString(), QVector<Ingredient>()});
     endInsertRows();
     return true;
 }
 
-//bool RecipeTableModel::insertColumns(int column, int count, const QModelIndex &parent)
-//{
-//    Q_UNUSED(parent);
-//    Q_UNUSED(column);
-//    Q_UNUSED(count);
-//    //beginInsertColumns(parent, column, column + count - 1);
-//    // FIXME: Implement me!
-//    //endInsertColumns();
-//}
+
 
 bool RecipeTableModel::removeRows(int position, int rows, const QModelIndex &parent)
 {
@@ -180,21 +121,9 @@ bool RecipeTableModel::removeRows(int position, int rows, const QModelIndex &par
     beginRemoveRows(QModelIndex(), position, position + rows - 1);
     for (int row = 0; row < rows; ++row)
         recipes.removeAt(position);
-    // FIXME: Implement me!
     endRemoveRows();
     return true;
 }
-
-//bool RecipeTableModel::removeColumns(int column, int count, const QModelIndex &parent)
-//{
-//    //beginRemoveColumns(parent, column, column + count - 1);
-//    // FIXME: Implement me!
-//    //endRemoveColumns();
-//    Q_UNUSED(column);
-//    Q_UNUSED(count);
-//    Q_UNUSED(parent);
-//}
-
 
 
 

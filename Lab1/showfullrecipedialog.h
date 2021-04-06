@@ -15,7 +15,6 @@ class showFullRecipeDialog : public QDialog
 
 public:
     explicit showFullRecipeDialog(const Recipe,QWidget *parent = nullptr);
-    //explicit showFullRecipeDialog(const Recipe,QWidget *parent = nullptr);
     ~showFullRecipeDialog();
 
 private:
