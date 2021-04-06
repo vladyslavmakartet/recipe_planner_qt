@@ -147,6 +147,9 @@ public:
         actionAbout->setText(QCoreApplication::translate("MainWindow", "About Recipe Planner...", nullptr));
         actionSave_As->setText(QCoreApplication::translate("MainWindow", "Save As", nullptr));
 #if QT_CONFIG(tooltip)
+        tableView->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Add a recipe and double click to see its description.</p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
         addButton->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>Add a new recipe</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         addButton->setText(QCoreApplication::translate("MainWindow", "Add", nullptr));

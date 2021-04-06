@@ -60,6 +60,7 @@ public:
     void write(QJsonObject &json) const;
 
 };
+    inline bool operator<(const Ingredient& a, const Ingredient& b) { return a.getIngredientName() < b.getIngredientName(); }
 Q_DECLARE_METATYPE(Ingredient)
 
 #endif // DATAHOLDER_H

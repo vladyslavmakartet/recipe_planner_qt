@@ -167,7 +167,7 @@
          </item>
         </layout>
        </item>
-       <item>
+       <item alignment="Qt::AlignTop">
         <widget class="QPushButton" name="addButtonEdit">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Add ingredient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -177,7 +177,7 @@
          </property>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignTop">
         <widget class="QPushButton" name="modifyButtonEdit">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Modify selected ingredient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -187,7 +187,7 @@
          </property>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignTop">
         <widget class="QPushButton" name="deleteButtonEdit">
          <property name="toolTip">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Delete selected ingredient&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

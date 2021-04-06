@@ -51,9 +51,10 @@ MainWindow::~MainWindow()
 }
 void MainWindow::CreateShoppingList()
 {
-   MenuDialog *dialog = new MenuDialog(this);
-   dialog->setWindowModality(Qt::WindowModal);
-   dialog->show();
+   MenuDialog *dialog = new MenuDialog(recipes,this);
+   //dialog->setWindowModality(Qt::WindowModal);
+   //dialog->show();
+   dialog->open();
 }
 void MainWindow::exit()
 {
@@ -281,6 +282,7 @@ void MainWindow::showAbout()
     messageBox.setWindowTitle("About");
     messageBox.setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
     messageBox.setTextFormat(Qt::TextFormat(Qt::RichText));
+    messageBox.setIconPixmap(QPixmap(":/images/info.png"));
     messageBox.setText("<h2><strong>Recipe Planner</strong></h2><p>This is a small program with a GUI designed for the creation/modification of recipes and calculation of ingredients one needs to buy after creating a shopping list.</p><p>The program is one of the assignments for the EGUI course at Warsaw University of Technology.</p><p>Created in <em>Qt Creator 4.14.2</em> based on Qt 5.15.2 (MSVC 2019, 64 bit)</p><p>Developed and designed by Vladyslav Makartet</p>");
     messageBox.exec();
 }

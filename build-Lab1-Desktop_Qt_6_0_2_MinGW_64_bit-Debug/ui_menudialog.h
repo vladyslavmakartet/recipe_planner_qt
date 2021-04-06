@@ -15,12 +15,11 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -31,22 +30,22 @@ public:
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_2;
-    QLabel *label_2;
-    QListView *listView;
-    QVBoxLayout *verticalLayout_3;
-    QLabel *label_3;
-    QListView *listView_2;
-    QVBoxLayout *verticalLayout_4;
+    QLabel *availableRecipesLabel;
+    QTableView *availableRecipesTableView;
+    QVBoxLayout *verticalLayout_5;
     QDialogButtonBox *buttonBox;
+    QSpacerItem *verticalSpacer_2;
+    QPushButton *cookPushButton;
+    QPushButton *removePushButton;
     QSpacerItem *verticalSpacer;
-    QHBoxLayout *horizontalLayout_2;
+    QVBoxLayout *verticalLayout_3;
+    QLabel *toBeCookedLabel;
+    QTableView *toBeCookedtableView;
+    QVBoxLayout *verticalLayout_4;
     QVBoxLayout *verticalLayout;
-    QLabel *label;
-    QLineEdit *lineEdit;
-    QHBoxLayout *horizontalLayout;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
+    QLabel *ingredientsToBuyLabel;
+    QTableView *ingredientsToBuyTableView;
+    QSpacerItem *horizontalSpacer;
 
     void setupUi(QDialog *MenuDialog)
     {
@@ -60,36 +59,23 @@ public:
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        label_2 = new QLabel(MenuDialog);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
+        availableRecipesLabel = new QLabel(MenuDialog);
+        availableRecipesLabel->setObjectName(QString::fromUtf8("availableRecipesLabel"));
 
-        verticalLayout_2->addWidget(label_2);
+        verticalLayout_2->addWidget(availableRecipesLabel);
 
-        listView = new QListView(MenuDialog);
-        listView->setObjectName(QString::fromUtf8("listView"));
+        availableRecipesTableView = new QTableView(MenuDialog);
+        availableRecipesTableView->setObjectName(QString::fromUtf8("availableRecipesTableView"));
+        availableRecipesTableView->setSelectionMode(QAbstractItemView::SingleSelection);
+        availableRecipesTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-        verticalLayout_2->addWidget(listView);
+        verticalLayout_2->addWidget(availableRecipesTableView);
 
 
         gridLayout->addLayout(verticalLayout_2, 0, 0, 1, 1);
 
-        verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        label_3 = new QLabel(MenuDialog);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-
-        verticalLayout_3->addWidget(label_3);
-
-        listView_2 = new QListView(MenuDialog);
-        listView_2->setObjectName(QString::fromUtf8("listView_2"));
-
-        verticalLayout_3->addWidget(listView_2);
-
-
-        gridLayout->addLayout(verticalLayout_3, 0, 1, 1, 1);
-
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
         buttonBox = new QDialogButtonBox(MenuDialog);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
@@ -100,60 +86,74 @@ public:
         buttonBox->setOrientation(Qt::Vertical);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
 
-        verticalLayout_4->addWidget(buttonBox);
+        verticalLayout_5->addWidget(buttonBox);
 
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_2 = new QSpacerItem(20, 30, QSizePolicy::Minimum, QSizePolicy::Fixed);
 
-        verticalLayout_4->addItem(verticalSpacer);
+        verticalLayout_5->addItem(verticalSpacer_2);
+
+        cookPushButton = new QPushButton(MenuDialog);
+        cookPushButton->setObjectName(QString::fromUtf8("cookPushButton"));
+
+        verticalLayout_5->addWidget(cookPushButton);
+
+        removePushButton = new QPushButton(MenuDialog);
+        removePushButton->setObjectName(QString::fromUtf8("removePushButton"));
+
+        verticalLayout_5->addWidget(removePushButton);
+
+        verticalSpacer = new QSpacerItem(20, 50, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_5->addItem(verticalSpacer);
 
 
-        gridLayout->addLayout(verticalLayout_4, 0, 2, 1, 1);
+        gridLayout->addLayout(verticalLayout_5, 0, 4, 2, 1);
 
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        toBeCookedLabel = new QLabel(MenuDialog);
+        toBeCookedLabel->setObjectName(QString::fromUtf8("toBeCookedLabel"));
+
+        verticalLayout_3->addWidget(toBeCookedLabel);
+
+        toBeCookedtableView = new QTableView(MenuDialog);
+        toBeCookedtableView->setObjectName(QString::fromUtf8("toBeCookedtableView"));
+        toBeCookedtableView->setSelectionMode(QAbstractItemView::SingleSelection);
+        toBeCookedtableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+        verticalLayout_3->addWidget(toBeCookedtableView);
+
+
+        gridLayout->addLayout(verticalLayout_3, 0, 3, 1, 1);
+
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        verticalLayout_4->setSizeConstraint(QLayout::SetFixedSize);
+        verticalLayout_4->setContentsMargins(0, -1, 0, 0);
+
+        gridLayout->addLayout(verticalLayout_4, 0, 1, 1, 1);
+
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        label = new QLabel(MenuDialog);
-        label->setObjectName(QString::fromUtf8("label"));
+        ingredientsToBuyLabel = new QLabel(MenuDialog);
+        ingredientsToBuyLabel->setObjectName(QString::fromUtf8("ingredientsToBuyLabel"));
 
-        verticalLayout->addWidget(label);
+        verticalLayout->addWidget(ingredientsToBuyLabel);
 
-        lineEdit = new QLineEdit(MenuDialog);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        ingredientsToBuyTableView = new QTableView(MenuDialog);
+        ingredientsToBuyTableView->setObjectName(QString::fromUtf8("ingredientsToBuyTableView"));
+        ingredientsToBuyTableView->setSelectionMode(QAbstractItemView::SingleSelection);
+        ingredientsToBuyTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-        verticalLayout->addWidget(lineEdit);
-
-
-        horizontalLayout_2->addLayout(verticalLayout);
-
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(-1, -1, -1, 0);
-        pushButton = new QPushButton(MenuDialog);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
-        pushButton->setSizePolicy(sizePolicy1);
-
-        horizontalLayout->addWidget(pushButton);
-
-        pushButton_2 = new QPushButton(MenuDialog);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-
-        horizontalLayout->addWidget(pushButton_2);
-
-        pushButton_3 = new QPushButton(MenuDialog);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-
-        horizontalLayout->addWidget(pushButton_3);
+        verticalLayout->addWidget(ingredientsToBuyTableView);
 
 
-        horizontalLayout_2->addLayout(horizontalLayout);
+        gridLayout->addLayout(verticalLayout, 1, 0, 1, 4);
 
+        horizontalSpacer = new QSpacerItem(16, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);
 
-        gridLayout->addLayout(horizontalLayout_2, 1, 0, 1, 2);
+        gridLayout->addItem(horizontalSpacer, 0, 2, 1, 1);
 
 
         gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
@@ -169,12 +169,11 @@ public:
     void retranslateUi(QDialog *MenuDialog)
     {
         MenuDialog->setWindowTitle(QCoreApplication::translate("MenuDialog", "Shopping List", nullptr));
-        label_2->setText(QCoreApplication::translate("MenuDialog", "Added Recipes", nullptr));
-        label_3->setText(QCoreApplication::translate("MenuDialog", "Ingredients to buy", nullptr));
-        label->setText(QCoreApplication::translate("MenuDialog", "Recipe", nullptr));
-        pushButton->setText(QCoreApplication::translate("MenuDialog", "Add", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MenuDialog", "Delete", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MenuDialog", "Modify", nullptr));
+        availableRecipesLabel->setText(QCoreApplication::translate("MenuDialog", "Available Recipes", nullptr));
+        cookPushButton->setText(QCoreApplication::translate("MenuDialog", "Cook", nullptr));
+        removePushButton->setText(QCoreApplication::translate("MenuDialog", "Remove", nullptr));
+        toBeCookedLabel->setText(QCoreApplication::translate("MenuDialog", "To be cooked", nullptr));
+        ingredientsToBuyLabel->setText(QCoreApplication::translate("MenuDialog", "Ingredients to buy", nullptr));
     } // retranslateUi
 
 };

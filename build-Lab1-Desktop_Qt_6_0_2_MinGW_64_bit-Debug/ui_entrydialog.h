@@ -178,17 +178,17 @@ public:
         addButton = new QPushButton(EntryDialog);
         addButton->setObjectName(QString::fromUtf8("addButton"));
 
-        horizontalLayout->addWidget(addButton);
+        horizontalLayout->addWidget(addButton, 0, Qt::AlignTop);
 
         modifyButton = new QPushButton(EntryDialog);
         modifyButton->setObjectName(QString::fromUtf8("modifyButton"));
 
-        horizontalLayout->addWidget(modifyButton);
+        horizontalLayout->addWidget(modifyButton, 0, Qt::AlignTop);
 
         deleteButton = new QPushButton(EntryDialog);
         deleteButton->setObjectName(QString::fromUtf8("deleteButton"));
 
-        horizontalLayout->addWidget(deleteButton);
+        horizontalLayout->addWidget(deleteButton, 0, Qt::AlignTop);
 
 
         gridLayout->addLayout(horizontalLayout, 1, 0, 1, 1);
